@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const bodyParser = require('body-parser');
-const handlers = require('../handlers/handlers.js');
+const handlers = require('./controllers/controllers.js');
 // const server = require('http').Server(app);
 
 const app = express();
