@@ -60,7 +60,7 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -79,26 +79,30 @@
 	
 	  _createClass(App, [{
 	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h1',
+	    value: function () {
+	      function render() {
+	        return _react2['default'].createElement(
+	          'div',
 	          null,
-	          'haloooooo'
-	        )
-	      );
-	    }
+	          _react2['default'].createElement(
+	            'h1',
+	            null,
+	            'haloooooo'
+	          )
+	        );
+	      }
+	
+	      return render;
+	    }()
 	  }]);
 	
 	  return App;
-	}(_react2.default.Component);
+	}(_react2['default'].Component);
 	
-	exports.default = App;
+	exports['default'] = App;
 	
 	
-	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
+	_reactDom2['default'].render(_react2['default'].createElement(App, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
