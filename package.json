@@ -4,8 +4,8 @@
   "description": "Language learning platform",
   "main": "server.js",
   "scripts": {
-    "test": "mocha -w spec/setup/setup.js **/clientSpec/*.spec.js",
-    "start": "webpack --progress --colors & nodemon server/server.js"
+    "start": "webpack --progress --colors & nodemon server/server.js",
+    "test": "mocha -w spec/setup/setup.js **/serverSpec/*.spec.js"
   },
   "repository": {
     "type": "git",
