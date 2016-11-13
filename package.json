@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/uberforcats/2016-09-thesis",
   "dependencies": {
+    "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "react": "^15.3.2",
@@ -42,6 +43,7 @@
     "jsdom": "^9.8.3",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
+    "pgpromise": "^0.1.1",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2"
   }
