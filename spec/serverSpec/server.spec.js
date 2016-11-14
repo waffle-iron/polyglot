@@ -1,35 +1,43 @@
-var handler = require('../../server/server');
+var app = require('../../server/server');
 var expect = require('chai').expect;
-var stubs = require('./Stubs');
+var Promise = require('bluebird');
+var request = require('request');
+var rp = require('request-promise');
 
-var waitForThen = function (test, cb) {
-  setTimeout(function() {
-    test() ? cb.apply(this) : waitForThen(test, cb);
-  }, 5);
-};
+describe('Server Routes', function() {
 
-describe('Node Server Request Listener Function', function() {
-
-  xit('Should answer GET requests for /classes/messages with a 200 status code', function() {
-    // This is a fake server request. Normally, the server would provide this,
-    // but we want to test our function's behavior totally independent of the server code
-    var req = new stubs.request('/classes/messages', 'GET');
-    var res = new stubs.response();
-
-    handler.requestHandler(req, res);
-
-    expect(res._responseCode).to.equal(200);
-    expect(res._ended).to.equal(true);
+  it('Should serve the index at /', function(done) {
+    request('http://127.0.0.1:8000/', function(err, response, body) {
+      expect(response.body.substring(0, response.body.indexOf('\n'))).to.equal('<!DOCTYPE html>');
+      done();
+    });
   });
-
-  xit('Should send back parsable stringified JSON', function() {
-    var req = new stubs.request('/classes/messages', 'GET');
-    var res = new stubs.response();
-
-    handler.requestHandler(req, res);
-
-    expect(JSON.parse.bind(this, res._data)).to.not.throw();
-    expect(res._ended).to.equal(true);
+  
+  it('Should serve index.html at other defined routes', function(done) {
+    var promises = [
+      rp('http://127.0.0.1:8000/home')
+        .then(function(htmlString) {
+          expect(htmlString.substring(0, htmlString.indexOf('\n'))).to.equal('<!DOCTYPE html>');
+        }),
+      rp('http://127.0.0.1:8000/chat')
+        .then(function(htmlString) {
+          expect(htmlString.substring(0, htmlString.indexOf('\n'))).to.equal('<!DOCTYPE html>');
+        }),
+      rp('http://127.0.0.1:8000/signup')
+        .then(function(htmlString) {
+          expect(htmlString.substring(0, htmlString.indexOf('\n'))).to.equal('<!DOCTYPE html>');
+        })
+    ];
+    Promise.all(promises).then(function() {
+      done();
+    });
+  });
+  
+  it('Should respond with a 404 error at bad routes', function(done) {
+    request('http://127.0.0.1:8000/fakeroute', function(err, response, body) {
+      expect(response.statusCode).to.equal(404);
+      done();
+    });
   });
 
 });
