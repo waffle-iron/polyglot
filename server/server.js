@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const usersController = require('./controllers/users');
 const sessionsController = require('./controllers/sessions');
+const viewRouter = require('./routes/routes');
 // const server = require('http').Server(app);
 
 const app = express();
@@ -14,6 +15,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('client'));
+
+app.use('/', viewRouter);
 
 app.use('/api/users', usersController);
 
