@@ -24,12 +24,17 @@
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+<<<<<<< HEAD
     "express-session": "^1.14.2",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
+=======
+    "material-ui": "^0.16.2",
+>>>>>>> 791b88b971564cce40ce8a45740cbcd84b57d8f6
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-tap-event-plugin": "^1.0.0",
     "request": "^2.78.0",
     "webpack": "^1.13.3"
   },
