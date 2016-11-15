@@ -21834,6 +21834,10 @@
 	
 	var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 	
+	var _Chat = __webpack_require__(368);
+	
+	var _Chat2 = _interopRequireDefault(_Chat);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21930,11 +21934,16 @@
 	              null,
 	              'learn from native speakers'
 	            ),
-	            _react2['default'].createElement(_RaisedButton2['default'], {
-	              label: 'Sign In',
-	              secondary: true,
-	              onTouchTap: this.handleTouchTap
-	            })
+	            _react2['default'].createElement(
+	              'div',
+	              null,
+	              _react2['default'].createElement(_RaisedButton2['default'], {
+	                label: 'Sign In',
+	                secondary: true,
+	                onTouchTap: this.handleTouchTap
+	              })
+	            ),
+	            _react2['default'].createElement(_Chat2['default'], null)
 	          )
 	        );
 	      }
@@ -34194,6 +34203,70 @@
 	} : void 0;
 	exports.default = MuiThemeProvider;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 368 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Chat = function (_Component) {
+	  _inherits(Chat, _Component);
+	
+	  function Chat(props) {
+	    _classCallCheck(this, Chat);
+	
+	    var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
+	
+	    _this.state = {
+	      videoURL: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4'
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(Chat, [{
+	    key: 'render',
+	    value: function () {
+	      function render() {
+	        return _react2['default'].createElement(
+	          'div',
+	          null,
+	          _react2['default'].createElement(
+	            'video',
+	            { id: 'background-video', loop: true, autoPlay: true, muted: true },
+	            _react2['default'].createElement('source', { src: this.state.videoURL, type: 'video/mp4' }),
+	            _react2['default'].createElement('source', { src: this.state.videoURL, type: 'video/ogg' }),
+	            'Your browser does not support the video tag.'
+	          )
+	        );
+	      }
+	
+	      return render;
+	    }()
+	  }]);
+	
+	  return Chat;
+	}(_react.Component);
+	
+	exports['default'] = Chat;
 
 /***/ }
 /******/ ]);
