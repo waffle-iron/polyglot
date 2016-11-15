@@ -1,20 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import Main from './Main';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <div>
-        <h1>haloooooo</h1>
-      </div>
-    );
-  }
-}
+injectTapEventPlugin();
 
-export default App;
-
-ReactDOM.render(<App />, document.getElementById('app'));
-
+render(<Main />, document.getElementById('app'));
