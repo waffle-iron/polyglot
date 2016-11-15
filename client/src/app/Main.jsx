@@ -5,6 +5,7 @@ import {indigo500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Chat from './Chat';
 
 const styles = {
   container: {
@@ -65,11 +66,14 @@ class Main extends Component {
           </Dialog>
           <h1>Lang-Go</h1>
           <h2>learn from native speakers</h2>
+          <div>
           <RaisedButton
             label="Sign In"
             secondary={true}
             onTouchTap={this.handleTouchTap}
-          />
+            />
+          </div>
+        <Chat />
         </div>
       </MuiThemeProvider>
     );
