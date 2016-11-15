@@ -4,7 +4,7 @@
   "description": "Language learning platform",
   "main": "server.js",
   "scripts": {
-    "test": "mocha -w spec/setup/setup.js **/clientSpec/*.spec.js & mocha -w spec/setup/setup.js **/serverSpec/*.spec.js",
+    "test": "NODE_ENV=test mocha spec/setup/setup.js **/clientSpec/*.spec.js & mocha spec/setup/setup.js **/serverSpec/*.spec.js & mocha spec/setup/setup.js **/dbSpec/*.spec.js",
     "start": "webpack --progress --colors & nodemon server/server.js"
   },
   "repository": {
@@ -41,9 +41,10 @@
     "eslint": "^3.10.1",
     "eslint-config-hackreactor": "github:hackreactor-labs/eslint-config-hackreactor",
     "jsdom": "^9.8.3",
+    "knex": "^0.12.6",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
-    "pgpromise": "^0.1.1",
+    "pg": "^6.1.0",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
     "request-promise": "^4.1.1"
