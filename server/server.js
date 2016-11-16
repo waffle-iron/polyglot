@@ -6,16 +6,8 @@ const app = express();
 
 const usersController = require('./controllers/users');
 const sessionsController = require('./controllers/sessions');
-<<<<<<< Updated upstream
+
 const viewRouter = require('./routes/routes');
-// const server = require('http').Server(app);
-=======
-// const path = require('path');
-// const flash = require('connect-flash');
-// const bodyParser = require('body-parser');
-
-
->>>>>>> Stashed changes
 
 
 const PORT = 8000;
@@ -46,15 +38,10 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 
 app.use(express.static('client'));
 
-// Initialize Passport and restore authentication state, if any, from the
-// session.
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Define routes.
-app.get('/', function(req, res) {
-    res.render('home', { user: req.user });
-  });
+// app.get('/', function(req, res) {
+//     res.render('home', { user: req.user });
+//   });
 
 app.get('/login', function(req, res){
     res.render('login');
@@ -75,27 +62,19 @@ app.get('/profile', require('connect-ensure-login').ensureLoggedIn(),
   });
 
 
-
-
-
-
-
-
-
-
-
-
 app.use(express.static('client'));
 
+// Initialize Passport and restore authentication state, if any, from the
+// session.
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Define routes.
 app.use('/', viewRouter);
 
 app.use('/api/users', usersController);
 
 app.use('/api/sessions', sessionsController);
-
-app.get('/', function(req, res) {
-    res.render('home', { user: req.user });
-  });
 
 app.listen(PORT, () => {
   console.log('It\'s Alive!!');
