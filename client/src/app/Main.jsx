@@ -1,18 +1,10 @@
-import React, {Component} from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import Dialog from 'material-ui/Dialog';
-import {indigo500} from 'material-ui/styles/colors';
-import FlatButton from 'material-ui/FlatButton';
+import React, { Component } from 'react';
+import { indigo500 } from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Chat from './Chat';
+import Splash from './Splash';
+import TitleBar from './TitleBar';
 
-const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 200,
-  },
-};
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -45,35 +37,11 @@ class Main extends Component {
   }
 
   render() {
-    const standardActions = (
-      <FlatButton
-        label="Ok"
-        primary={true}
-        onTouchTap={this.handleRequestClose}
-      />
-    );
-
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={styles.container}>
-          <Dialog
-            open={this.state.open}
-            title="Sign In"
-            actions={standardActions}
-            onRequestClose={this.handleRequestClose}
-          >
-            Facebook Redirect
-          </Dialog>
-          <h1>Lang-Go</h1>
-          <h2>learn from native speakers</h2>
-          <div>
-          <RaisedButton
-            label="Sign In"
-            secondary={true}
-            onTouchTap={this.handleTouchTap}
-            />
-          </div>
-        <Chat />
+        <div>
+          <TitleBar />
+          <Splash />
         </div>
       </MuiThemeProvider>
     );
