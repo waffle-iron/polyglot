@@ -12,3 +12,6 @@ client/src/public/bundle.map.js
 # Keys
 server/config/keys.js
 config/peerjs.config.js
+
+client/src/public/bundle.js
+client/src/public/bundle.js.map
