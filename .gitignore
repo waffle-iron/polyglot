@@ -4,3 +4,7 @@ bower_components/
 
 build/
 dist/
+
+# Webpack builds
+client/src/public/bundle.js
+client/src/public/bundle.map.js
