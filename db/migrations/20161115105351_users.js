@@ -1,29 +1,32 @@
 
 exports.up = function(knex, Promise) {
   return Promise.all([
-    knex.schema.createTable('users', table => {
+    knex.schema.createTableIfNotExists('users', table => {
       table.increments().unsigned();
       table.string('full_name');
       table.string('email');
       table.string('facebook_id');
     }),
-    knex.schema.createTable('learners', table => {
+    knex.schema.createTableIfNotExists('learners', table => {
       table.increments();
       table.integer('user_id').references('id').inTable('users');
       table.integer('language_id').references('id').inTable('languages');
-      table.string('level');
+      table.integer('level_id').references('id').inTable('levels');
     }),
-    knex.schema.createTable('teachers', table => {
+    knex.schema.createTableIfNotExists('teachers', table => {
       table.increments();
       table.integer('user_id').references('id').inTable('users');
       table.integer('language_id').references('id').inTable('languages');
-      table.string('level');
     }),
-    knex.schema.createTable('languages', table => {
+    knex.schema.createTableIfNotExists('languages', table => {
       table.increments();
       table.string('name');
     }),
-    knex.schema.createTable('sessions', table => {
+    knex.schema.createTableIfNotExists('levels', table => {
+      table.increments();
+      table.string('name');
+    }),
+    knex.schema.createTableIfNotExists('sessions', table => {
       table.increments();
       table.integer('learner_id').references('id').inTable('learners');
       table.integer('teacher_id').references('id').inTable('teachers');
@@ -38,10 +41,10 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('users'),
-    knex.schema.dropTable('learners'),
-    knex.schema.dropTable('teachers'),
-    knex.schema.dropTable('languages'),
-    knex.schema.dropTable('sessions')
+    knex.raw('DROP TABLE users CASCADE'),
+    knex.raw('DROP TABLE learners CASCADE'),
+    knex.raw('DROP TABLE teachers CASCADE'),
+    knex.raw('DROP TABLE languages CASCADE'),
+    knex.raw('DROP TABLE sessions CASCADE')
   ]);
 };
