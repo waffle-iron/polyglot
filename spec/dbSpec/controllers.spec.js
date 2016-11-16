@@ -1,17 +1,17 @@
 process.env.NODE_ENV = 'test';
 
-const knex = require('../../db/index.js');
+const db = require('../../db/index.js');
 const controllers = require('../../db/controllers/controllers.js');
 const expect = require('chai').expect;
 
 describe('Database Tests', () => {
   beforeEach(done => {
-    knex.migrate.rollback()
+    db.migrate.rollback()
       .then(() => {
-        return knex.migrate.latest();
+        return db.migrate.latest();
       })
       .then(() => {
-        return knex.seed.run();
+        return db.seed.run();
       })
       .then(() => {
         done();
@@ -19,7 +19,7 @@ describe('Database Tests', () => {
   });
 
   afterEach(done => {
-    knex.migrate.rollback()
+    db.migrate.rollback()
       .then(() => {
         done();
       });
@@ -29,7 +29,7 @@ describe('Database Tests', () => {
     it('should add one user', done => {
       controllers.addUser('Omar', 'omar@test.com', 'thisisafacebookid')
         .then(response => {
-          return knex('users').select().where({id: Number(response)});
+          return db('users').select().where({id: Number(response)});
         })
         .then(response => {
           expect(response.length).to.equal(1);
@@ -44,17 +44,17 @@ describe('Database Tests', () => {
       var learner;
       controllers.addLearner('Test\'s facebook_id', 'English', 'Beginner')
         .then(response => {
-          return knex('learners').select().where({id: Number(response[0])});
+          return db('learners').select().where({id: Number(response[0])});
         })
         .then(learnerArr => {
           expect(learnerArr.length).to.equal(1);
           learner = learnerArr[0];
           expect(learner.user_id).to.equal(1);
-          return knex('languages').select().where({id: learner.language_id});
+          return db('languages').select().where({id: learner.language_id});
         })
         .then(languageArr => {
           expect(languageArr[0].name).to.equal('English');
-          return knex('levels').select().where({id: learner.level_id});
+          return db('levels').select().where({id: learner.level_id});
         })
         .then(levelArr => {
           expect(levelArr[0].name).to.equal('Beginner');
@@ -66,19 +66,36 @@ describe('Database Tests', () => {
       var teacher;
       controllers.addTeacher('Test\'s facebook_id', 'Spanish')
         .then(response => {
-          return knex('teachers').select().where({id: Number(response[0])});
+          return db('teachers').select().where({id: Number(response[0])});
         })
         .then(teacherArr => {
           expect(teacherArr.length).to.equal(1);
           teacher = teacherArr[0];
           expect(teacher.user_id).to.equal(1);
-          return knex('languages').select().where({id: teacher.language_id});
+          return db('languages').select().where({id: teacher.language_id});
         })
         .then(languageArr => {
           expect(languageArr[0].name).to.equal('Spanish');
           done();
         });
     });
-
+    it('should update a learner', done => {
+      var learnerId;
+      controllers.addLearner('Test\'s facebook_id', 'English', 'Beginner')
+        .then(response => {
+          learnerId = response[0];
+          return controllers.updateLearner(learnerId, 'Intermediate');
+        })
+        .then(emptyResponse => {
+          return db('learners').select().where({id: learnerId});
+        })
+        .then(learnerArr => {
+          return db('levels').select().where({id: learnerArr[0].level_id});
+        })
+        .then(levelArr => {
+          expect(levelArr[0].name).to.equal('Intermediate');
+          done();
+        });
+    });
   });
 });
