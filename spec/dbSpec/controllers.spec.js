@@ -26,6 +26,18 @@ describe('Database Tests', () => {
   });
 
   describe('controllers', () => {
+    it('should find a user by email', done => {
+      controllers.findUserByEmail('test@test.com')
+        .then(response => {
+          var user = response[0];
+          expect(response.length).to.equal(1);
+          expect(response[0].full_name).to.equal('Test McTesterson');
+          expect(response[0].email).to.equal('test@test.com');
+          expect(response[0].facebook_id).to.equal('Test\'s facebook_id');
+          done();
+        });
+    });
+
     it('should add one user', done => {
       controllers.addUser('Omar', 'omar@test.com', 'thisisafacebookid')
         .then(response => {
@@ -42,7 +54,7 @@ describe('Database Tests', () => {
 
     it('should add a learner', done => {
       var learner;
-      controllers.addLearner('Test\'s facebook_id', 'English', 'Beginner')
+      controllers.addLearner('test@test.com', 'English', 'Beginner')
         .then(response => {
           return db('learners').select().where({id: Number(response[0])});
         })
@@ -64,7 +76,7 @@ describe('Database Tests', () => {
 
     it('should add a teacher', done => {
       var teacher;
-      controllers.addTeacher('Test\'s facebook_id', 'Spanish')
+      controllers.addTeacher('test@test.com', 'Spanish')
         .then(response => {
           return db('teachers').select().where({id: Number(response[0])});
         })
@@ -81,7 +93,7 @@ describe('Database Tests', () => {
     });
     it('should update a learner', done => {
       var learnerId;
-      controllers.addLearner('Test\'s facebook_id', 'English', 'Beginner')
+      controllers.addLearner('test@test.com', 'English', 'Beginner')
         .then(response => {
           learnerId = response[0];
           return controllers.updateLearner(learnerId, 'Intermediate');
