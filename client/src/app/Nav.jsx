@@ -30,7 +30,7 @@ class Nav extends Component {
   render() {
     return (
       <div>
-        <h1>BOATS 'N HOES</h1>
+        <h1>BOATS 'N POTATOES</h1>
         <Link to='/nav/chat'>Chat</Link>
         <Link to='/nav/dash'>Dash</Link>
         {this.props.children}
