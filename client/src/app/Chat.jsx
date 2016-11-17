@@ -20,7 +20,7 @@ class Chat extends Component {
     const videoChat = document.getElementById('videoChat');
     let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     const url = window.URL || window.webkitURL;
-    $.post(`/api/sessions/${this.props.language}`, { user_id: this.props.myId, teacher: this.props.teacher })
+    $.post(`/api/sessions/${this.props.language}`, { userId: this.props.myId, teacher: this.props.teacher })
       .done((pair) => {
         if ( pair === 'OK' ) {
           // set up answer

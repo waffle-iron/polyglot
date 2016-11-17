@@ -1,5 +1,7 @@
-var CLIENT_ID = '';
-var CLIENT_SECRET = '';
+'use strict';
 
-module.exports.CLIENT_SECRET = CLIENT_SECRET;
-module.exports.CLIENT_ID = CLIENT_ID;
+const CLIENT_ID = '';
+const CLIENT_SECRET = '';
+
+exports.CLIENT_ID = CLIENT_ID;
+exports.CLIENT_SECRET = CLIENT_SECRET;
