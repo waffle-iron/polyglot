@@ -7,11 +7,11 @@ router.get('/', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
-router.get('/home', (req, res) => {
+router.get('/splash', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
-router.get('/chat', (req, res) => {
+router.get('/nav/chat', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
