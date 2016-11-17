@@ -10,7 +10,7 @@ import Chat from './app/Chat';
 render((
   <Router history={browserHistory}>
     <Route path='/' component={ App }>
-      <Route path='splash' component={ Splash }/>
+      <Route path='/login/facebook' component={ Splash }/>
       <Route path='nav' component={ Nav }>
         <Route path='chat' component={ Chat }/>
       </Route>

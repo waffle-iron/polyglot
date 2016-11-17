@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const passport = require('passport');
+const Strategy = require('passport-facebook').Strategy;
 
 // Add in a route for each react view
 router.get('/', (req, res) => {
