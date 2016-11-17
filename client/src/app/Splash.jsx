@@ -71,7 +71,7 @@ class Splash extends Component {
   render() {
     return (
       <div>
-        <h1>The FUckin Catalina Wine Mixer</h1>
+        <h1>The Catalina Wine Mixer</h1>
       </div>
     );
   }
