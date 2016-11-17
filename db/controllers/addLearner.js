@@ -1,9 +1,9 @@
 const db = require('../index.js');
 
-module.exports = (facebookId, languageName, skillLevel) => {
+module.exports = (email, languageName, skillLevel) => {
   let user;
   let language;
-  return db('users').select().where({facebook_id: facebookId})
+  return db('users').select().where({email: email})
     .then(userArr => {
       user = userArr[0];
       return db('languages').select().where({name: languageName});
