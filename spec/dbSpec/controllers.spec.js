@@ -91,6 +91,7 @@ describe('Database Tests', () => {
           done();
         });
     });
+
     it('should update a learner', done => {
       var learnerId;
       controllers.addLearner('test@test.com', 'English', 'Beginner')
@@ -109,5 +110,42 @@ describe('Database Tests', () => {
           done();
         });
     });
+
+    it('should return all languages a user wants to learn', done => {
+      var learnerId;
+      controllers.addLearner('test@test.com', 'Mandarin', 'Beginner')
+        .then(response => {
+          return controllers.addLearner('test@test.com', 'Spanish', 'Advanced');
+        })
+        .then(response => {
+          learnerId = response[0];
+          return controllers.getLearningLanguages('test@test.com');
+        })
+        .then(languages => {
+          expect(languages).to.include('Spanish');
+          expect(languages).to.include('Mandarin');
+          done();
+        });
+    });
+
+    it('should return all languages a user can teach', done => {
+      var teacherId;
+      controllers.addTeacher('test@test.com', 'German')
+        .then(response => {
+          return controllers.addTeacher('test@test.com', 'Italian');
+        })
+        .then(response => {
+          teacherId = response[0];
+          return controllers.getTeachingLanguages('test@test.com');
+        })
+        .then(languages => {
+          expect(languages).to.include('German');
+          expect(languages).to.include('Italian');
+          done();
+        });
+    });
+
+
+
   });
 });
