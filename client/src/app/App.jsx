@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Link } from 'react-router';
+import { indigo500 } from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: indigo500,
+  },
+});
 
 class App extends Component {
   constructor(props) {
@@ -10,15 +19,13 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h3>LangGeezy</h3>
-        <button onClick={() => window.location = '/login/facebook' }>SignIn</button>
-        <Link to='/splash'>Splash</Link>
-        <Link to='/nav'>Nav</Link>
-        <Link to='/profile'>Profile</Link>
-        {this.props.children}
-      </div>
-
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div>
+          <Link to='/nav'>Nav</Link>
+          <Link to='/profile'>Profile</Link>
+          {this.props.children}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

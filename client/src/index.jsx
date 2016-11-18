@@ -7,12 +7,15 @@ import Dashboard from './app/Dashboard';
 import Chat from './app/Chat';
 import Profile from './app/Profile';
 import Nav from './app/Nav';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 
 render((
   <Router history={browserHistory}>
     <Route path='/' component={ App }>
-      <Route path='splash' component={ Splash }/>
+      <IndexRoute component={ Splash }/>
       <Route path='profile' component={ Profile }/>
       <Route path='nav' component={ Dashboard }>
       </Route>
