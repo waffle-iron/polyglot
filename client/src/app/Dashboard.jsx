@@ -3,15 +3,22 @@ import { createStore } from 'redux';
 import LaunchPad from './LaunchPad';
 import Chat from './Chat';
 import DashButtons from './DashButtons';
+import $ from 'jquery';
 
+let userId;
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-
-    // TODO: get rid of dummy myId value and sub for passed in one
+    
     this.store = createStore(this.reducer, { myId: '123', language: '', teacher: false, view: 0 });
     this.store.subscribe(this.setState.bind(this, {}));
+    
+    $.get('/api/users')
+      .done((data) => {
+        userId = data;
+      });
+    
   }
 
   reducer(state = {}, action) {
@@ -40,7 +47,7 @@ class Dashboard extends Component {
     if ( viewControl === 0 ) {
       comp = <DashButtons store={ this.store } />; 
     } else if ( viewControl === 1 ) {
-      comp = <LaunchPad store={ this.store }/>;
+      comp = <LaunchPad userId={ userId } store={ this.store }/>;
     } else if ( viewControl === 2 ) {
       comp = <Chat store={ this.store }/>;
     }

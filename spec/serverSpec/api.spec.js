@@ -55,7 +55,7 @@ describe('API tests', function() {
       uri: 'http://localhost:8000/api/sessions/french',
       method: 'POST',
       json: {
-        user_id: '1234',
+        userId: '1234',
         teacher: false
       }
     };
@@ -64,7 +64,7 @@ describe('API tests', function() {
       uri: 'http://localhost:8000/api/sessions/french',
       method: 'POST',
       json: {
-        user_id: '4321',
+        userId: '4321',
         teacher: true
       }
     };
@@ -78,8 +78,8 @@ describe('API tests', function() {
           .then(function(body) {
             expect(body).to.equal('1234');
             done();
-          })
-      })
+          });
+      });
   });
 });
 

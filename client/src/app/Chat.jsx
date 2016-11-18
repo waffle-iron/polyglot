@@ -9,7 +9,7 @@ class Chat extends Component {
     super(props);
     // TODO: pass in the initial id as a prop
     this.state = {
-      peer: new Peer(this.props.myId, { key: apiKeys.peerJs }),
+      peer: new Peer(this.props.store.getState().myId, { key: apiKeys.peerJs }),
     };
   }
   // On mount, send AJAX request to get other id
@@ -20,7 +20,7 @@ class Chat extends Component {
     const videoChat = document.getElementById('videoChat');
     let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     const url = window.URL || window.webkitURL;
-    $.post(`/api/sessions/${this.props.language}`, { userId: this.props.myId, teacher: this.props.teacher })
+    $.post(`/api/sessions/${this.props.store.getState().language}`, { userId: this.props.store.getState().myId, teacher: this.props.store.getState().teacher })
       .done((pair) => {
         if ( pair === 'OK' ) {
           // set up answer
