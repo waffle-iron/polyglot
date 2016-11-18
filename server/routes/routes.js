@@ -6,11 +6,12 @@ const Strategy = require('passport-facebook').Strategy;
 
 // Add in a route for each react view
 router.get('/', (req, res) => {
-  console.log('from routes*******', req.user);
+  
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
 router.get('/splash', (req, res) => {
+  console.log('req.user^^^^', req.user);
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
