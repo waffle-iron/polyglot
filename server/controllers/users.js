@@ -3,6 +3,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   // add in additional logic
+  console.log('****************', req.user);
   res.sendStatus(200);
 });
 
