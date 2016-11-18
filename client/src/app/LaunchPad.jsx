@@ -11,7 +11,8 @@ class LaunchPad extends Component {
     e.preventDefault();
     let language = document.getElementById('language').value;
     let view = 2;
-    let action = { type: ENTER_CHAT, language: language, view: view };
+    let myId = this.props.userId;
+    let action = { type: ENTER_CHAT, myId: myId, language: language, view: view };
     this.props.store.dispatch(action);
   }
 

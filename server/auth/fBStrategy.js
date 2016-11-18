@@ -7,13 +7,13 @@ const keys = require('../config/keys.js');
 
 
 const fBStrategy = new Strategy({
-    clientID: keys.CLIENT_ID,
-    clientSecret: keys.CLIENT_SECRET,
-    callbackURL: 'http://localhost:8000/login/facebook/return',
-    profileFields :['email', 'displayName', 'id']
-  },function(accessToken, refreshToken, profile, cb) {
-    return cb(null, profile);
-  });
+  clientID: keys.CLIENT_ID,
+  clientSecret: keys.CLIENT_SECRET,
+  callbackURL: 'http://localhost:8000/login/facebook/return',
+  profileFields: ['email', 'displayName', 'id']
+}, function(accessToken, refreshToken, profile, cb) {
+  return cb(null, profile);
+});
 
 var handleAuth = passport.authenticate('facebook', {scope: ['email']});
 var handleAuthReturn = passport.authenticate('facebook', { failureRedirect: '/login' });
@@ -24,7 +24,7 @@ var handleAuthCB = function(req, res) {
   .then(function(user) {
     res.redirect('/');
   });
-}
+};
 
 var deSerialize = function(email, cb) {
   db.findUserByEmail(email).then(function(data) {
@@ -32,12 +32,15 @@ var deSerialize = function(email, cb) {
   });
 };
 
-var serialize = function(user, cb) { cb(null, user.emails[0].value); };
+var serialize = function(user, cb) { 
+  console.log('FACEBOOK USER', user);
+  cb(null, user.emails[0].value); 
+};
 // problem here with data
 
-var ensure = function(req, res){
-    res.send();
-  }
+var ensure = function(req, res) {
+  res.send();
+};
 
 module.exports.handleAuthReturn = handleAuthReturn;
 module.exports.handleAuthCB = handleAuthCB;
