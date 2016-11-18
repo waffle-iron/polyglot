@@ -1,3 +1,4 @@
+'use strict';
 const db = require('../index.js');
 
 module.exports = (email, languageName) => {
@@ -26,7 +27,7 @@ module.exports = (email, languageName) => {
       resolve(db('teachers').insert({
         user_id: user.id,
         language_id: languagesArr[0].id,
-      }, 'id')); 
+      }, 'id'));
     });
   });
 };

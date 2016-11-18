@@ -1,3 +1,5 @@
+'use strict';
+
 const db = require('../index.js');
 
 module.exports = (email, languageName, skillLevel) => {
