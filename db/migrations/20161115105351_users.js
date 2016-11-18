@@ -3,9 +3,9 @@ exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTableIfNotExists('users', table => {
       table.increments().unsigned();
-      table.string('full_name');
-      table.string('email');
-      table.string('facebook_id');
+      table.string('full_name').notNullable();
+      table.string('email').unique();
+      table.string('facebook_id').unique();
     }),
     knex.schema.createTableIfNotExists('learners', table => {
       table.increments();
