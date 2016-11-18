@@ -27,9 +27,9 @@ passport.use(strategy.fBStrategy);
 passport.serializeUser(strategy.serialize);
 passport.deserializeUser(strategy.deSerialize);
 
-app.get('/login/facebook', strategy.handleAuthReturn);
+app.get('/login/facebook', strategy.handleAuth);
 
-app.get('/login/facebook/return', strategy.handleAuth, strategy.handleAuthCB);
+app.get('/login/facebook/return', strategy.handleAuthReturn, strategy.handleAuthCB);
 
 app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), strategy.ensure);
 
@@ -38,5 +38,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
-
-
