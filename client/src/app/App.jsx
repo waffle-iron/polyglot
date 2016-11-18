@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
-  
+
 
   render() {
     return (
@@ -15,6 +15,7 @@ class App extends Component {
         <button onClick={() => window.location = '/login/facebook' }>SignIn</button>
         <Link to='/splash'>Splash</Link>
         <Link to='/nav'>Nav</Link>
+        <Link to='/profile'>Profile</Link>
         {this.props.children}
       </div>
 
