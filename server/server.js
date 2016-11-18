@@ -47,7 +47,7 @@ app.use('/', viewRouter);
 app.use(express.static('client'));
 
 
-app.get('/login/facebook', passport.authenticate('facebook'));
+app.get('/login/facebook', passport.authenticate('facebook', {scope: ['email']}));
 app.get('/login/facebook/return', 
   passport.authenticate('facebook', { failureRedirect: '/login'}), function(req, res) {
     var user = req.user;
