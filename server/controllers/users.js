@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../../db/controllers/controllers.js');
 
 router.get('/', (req, res) => {
-  // add in additional logic
-  console.log('****************', req);
-  res.sendStatus(200);
+  db.findUserByEmail(req.session.passport.user)
+    .then(user => {
+      res.status(200).json(user.id);
+    });
 });
 
 router.post('/', (req, res) => {

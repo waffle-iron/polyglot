@@ -11,21 +11,11 @@ const strategy = require('./auth/fBStrategy');
 
 const PORT = 8000;
 
-
-app.use('/', viewRouter);
-
-app.use('/api/users', usersController);
-app.use('/api/sessions', sessionsController);
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 app.use(express.static('client'));
-
-app.get('/', (req, res) => {
-  console.log('HOT N READY');
-  res.sendFile('index.html', {root: path.join(__dirname, '../client')});
-});
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -34,6 +24,9 @@ passport.use(strategy.fBStrategy);
 passport.serializeUser(strategy.serialize);
 passport.deserializeUser(strategy.deSerialize);
 
+app.use('/api/users', usersController);
+app.use('/api/sessions', sessionsController);
+app.use('/', viewRouter);
 app.get('/login/facebook', strategy.handleAuth);
 
 app.get('/login/facebook/return', strategy.handleAuthReturn, strategy.handleAuthCB);
