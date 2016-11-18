@@ -26,17 +26,6 @@ describe('Database Tests', () => {
   });
 
   describe('controllers', () => {
-    it('should find a user by email', done => {
-      controllers.findUserByEmail('test@test.com')
-        .then(response => {
-          var user = response[0];
-          expect(response.length).to.equal(1);
-          expect(response[0].full_name).to.equal('Test McTesterson');
-          expect(response[0].email).to.equal('test@test.com');
-          expect(response[0].facebook_id).to.equal('Test\'s facebook_id');
-          done();
-        });
-    });
 
     it('should add one user', done => {
       controllers.addUser('Omar', 'omar@test.com', 'thisisafacebookid')
@@ -48,6 +37,16 @@ describe('Database Tests', () => {
           expect(response[0].full_name).to.equal('Omar');
           expect(response[0].email).to.equal('omar@test.com');
           expect(response[0].facebook_id).to.equal('thisisafacebookid');
+          done();
+        });
+    });
+
+    it('should find a user by email', done => {
+      controllers.findUserByEmail('test@test.com')
+        .then(user => {
+          expect(user.full_name).to.equal('Test McTesterson');
+          expect(user.email).to.equal('test@test.com');
+          expect(user.facebook_id).to.equal('Test\'s facebook_id');
           done();
         });
     });
@@ -89,6 +88,9 @@ describe('Database Tests', () => {
         .then(languageArr => {
           expect(languageArr[0].name).to.equal('Spanish');
           done();
+        })
+        .catch(err => {
+          console.log('error adding teacher',err);
         });
     });
 
