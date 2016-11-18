@@ -1,3 +1,4 @@
+'use strict';
 process.env.NODE_ENV = 'test';
 
 const db = require('../../db/index.js');
@@ -52,7 +53,7 @@ describe('Database Tests', () => {
     });
 
     it('should add a learner', done => {
-      var learner;
+      let learner;
       controllers.addLearner('test@test.com', 'English', 'Beginner')
         .then(response => {
           return db('learners').select().where({id: Number(response[0])});
@@ -74,7 +75,7 @@ describe('Database Tests', () => {
     });
 
     it('should add a teacher', done => {
-      var teacher;
+      let teacher;
       controllers.addTeacher('test@test.com', 'Spanish')
         .then(response => {
           return db('teachers').select().where({id: Number(response[0])});
@@ -95,7 +96,7 @@ describe('Database Tests', () => {
     });
 
     it('should update a learner', done => {
-      var learnerId;
+      let learnerId;
       controllers.addLearner('test@test.com', 'English', 'Beginner')
         .then(response => {
           learnerId = response[0];
@@ -114,7 +115,7 @@ describe('Database Tests', () => {
     });
 
     it('should return all languages a user wants to learn', done => {
-      var learnerId;
+      let learnerId;
       controllers.addLearner('test@test.com', 'Mandarin', 'Beginner')
         .then(response => {
           return controllers.addLearner('test@test.com', 'Spanish', 'Advanced');
@@ -131,7 +132,7 @@ describe('Database Tests', () => {
     });
 
     it('should return all languages a user can teach', done => {
-      var teacherId;
+      let teacherId;
       controllers.addTeacher('test@test.com', 'German')
         .then(response => {
           return controllers.addTeacher('test@test.com', 'Italian');

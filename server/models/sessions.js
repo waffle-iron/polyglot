@@ -1,3 +1,5 @@
+'use strict';
+
 let langsAndIds = {
   teachers: {},
   students: {}
@@ -11,7 +13,7 @@ const getPartner = (id, language, teacher) => {
     } else {
       langsAndIds.teachers[language] = langsAndIds.teachers[language] || [];
       langsAndIds.teachers[language].push(id);
-      return 'OK'
+      return 'OK';
     }
   } else {
     langsAndIds.teachers[language] = langsAndIds.teachers[language] || [];
@@ -20,7 +22,7 @@ const getPartner = (id, language, teacher) => {
     } else {
       langsAndIds.students[language] = langsAndIds.students[language] || [];
       langsAndIds.students[language].push(id);
-      return 'OK'
+      return 'OK';
     }
   }
 };
