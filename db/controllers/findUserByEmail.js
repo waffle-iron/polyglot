@@ -7,7 +7,7 @@ module.exports = (email) => {
         resolve(response[0]);
       })
       .catch(err => {
-        reject(err);
+        resolve(err);
       });
   });
 };
