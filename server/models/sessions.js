@@ -6,8 +6,7 @@ let langsAndIds = {
 };
 
 const getPartner = (id, language, teacher) => {
-  console.log('Queue object', langsAndIds);
-  if (teacher) {
+  if (teacher === true) {
     langsAndIds.students[language] = langsAndIds.students[language] || [];
     if (langsAndIds.students[language].length > 0) {
       return langsAndIds.students[language].shift();

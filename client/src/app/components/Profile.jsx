@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import AppBar from './AppBar';
+// import AppBar from './AppBar';
 import Dashboard from './Dashboard';
-import SelectableLanguages from './SelectableLanguages';
+// import SelectableLanguages from './SelectableLanguages';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import {List, ListItem} from 'material-ui/List';
 import TextField from 'material-ui/TextField';
@@ -44,7 +44,6 @@ class Profile extends Component {
 
     return (
       <div>
-        <AppBar />
         <div style={styles.container}>
         <h3>Profile</h3>
         <Link to='/dashboard'><RaisedButton label="Save Profile" primary></RaisedButton></Link>

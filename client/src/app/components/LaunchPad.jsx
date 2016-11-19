@@ -9,9 +9,8 @@ class LaunchPad extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let language = document.getElementById('language').value;
-    let view = 2;
     let myId = this.props.userId;
-    let action = { type: types.ENTER_CHAT, myId: myId, language: language, view: view };
+    let action = { type: types.ENTER_CHAT, myId: myId, language: language };
     this.props.store.dispatch(action);
   }
 

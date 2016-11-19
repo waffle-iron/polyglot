@@ -9,8 +9,7 @@ class DashButtons extends Component {
   handleTeach(e) {
     e.preventDefault();
     let teacher = true;
-    let view = 1;
-    let action = { type: types.ENTER_LAUNCH, teacher: teacher, view: view };
+    let action = { type: types.ENTER_LAUNCH, teacher: teacher };
     this.props.store.dispatch(action);
   }
 
