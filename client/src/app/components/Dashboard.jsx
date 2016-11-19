@@ -25,7 +25,6 @@ class Dashboard extends Component {
       language: null,
       teacher: null,
       view: 0,
-      peer: null,
     };
 
     this.store = createStore(dashReducer, initialState, applyMiddleware( thunk, promise, logger ));
