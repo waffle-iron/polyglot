@@ -6,9 +6,12 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: indigo500,
-  },
+  // palette: {
+  //   accent1Color: indigo500,
+  // },
+  // appBar: {
+  //   color: indigo500,
+  // }
 });
 
 class App extends Component {
