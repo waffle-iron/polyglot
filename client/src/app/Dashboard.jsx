@@ -3,6 +3,8 @@ import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createLogger from 'redux-logger';
+import { browserHistory } from 'react-router';
+import ApiServices from './componentServices/ApiServices';
 import LaunchPad from './LaunchPad';
 import Chat from './Chat';
 import DashButtons from './DashButtons';
@@ -10,8 +12,9 @@ import $ from 'jquery';
 import Peer from 'peerjs';
 import { apiKeys } from '../../../config/peerjs.config.js';
 
-let userId;
 
+
+// look for reducer not found error
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +37,18 @@ class Dashboard extends Component {
         userId = data;
       });
     
+  }
+
+  componentWillMount() {
+    this.props.getUserId().then((resp)=>{console.log('hhhhh', resp)}) 
+    // var response = this.props.getUserId()
+    //   response.then((resp)=> { 
+    //     if (resp > 0) {router.transitionTo('/splash')} 
+    //   })
+  }
+
+  reDirect() {
+    return <Link to='/dashboard'><button>Save</button></Link>
   }
 
   reducer(state = {}, action) {
@@ -69,10 +84,12 @@ class Dashboard extends Component {
     
     return (
       <div>
+
         { comp }
+        
       </div>
     );
   }
 }
 
-export default Dashboard;
+export default ApiServices(Dashboard);
