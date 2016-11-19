@@ -4,13 +4,12 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createLogger from 'redux-logger';
 import { browserHistory } from 'react-router';
-import ApiServices from './componentServices/ApiServices';
+import ApiServices from '../componentServices/ApiServices';
 import LaunchPad from './LaunchPad';
 import Chat from './Chat';
 import DashButtons from './DashButtons';
 import $ from 'jquery';
-import Peer from 'peerjs';
-import { apiKeys } from '../../../config/peerjs.config.js';
+import dashReducer from '../reducers/Dashboard';
 
 let userId;
 
@@ -29,44 +28,21 @@ class Dashboard extends Component {
       peer: null,
     };
 
-    this.store = createStore(this.reducer, initialState, applyMiddleware( thunk, promise, logger ));
+    this.store = createStore(dashReducer, initialState, applyMiddleware( thunk, promise, logger ));
     this.store.subscribe(this.setState.bind(this, {}));
     
     $.get('/api/users')
       .done((data) => {
         userId = data;
       });
-    
   }
 
   componentWillMount() {
-    this.props.getUserId().then((resp)=>{console.log('hhhhh', resp)}) 
-    // var response = this.props.getUserId()
-    //   response.then((resp)=> { 
-    //     if (resp > 0) {router.transitionTo('/splash')} 
-    //   })
+    this.props.getUserId().then( (resp) => { console.log('hhhhh', resp); }); 
   }
 
   reDirect() {
-    return <Link to='/dashboard'><button>Save</button></Link>
-  }
-
-  reducer(state = {}, action) {
-    let newState = JSON.parse(JSON.stringify(state));
-    if ( action.type === 'ENTER_LAUNCH' ) {
-      newState.teacher = action.teacher;
-      newState.view = action.view;
-    } else if ( action.type === 'ENTER_CHAT' ) {
-      newState.myId = action.myId;
-      newState.language = action.language;
-      newState.peer = new Peer(action.myId, { key: apiKeys.peerJs });
-      newState.view = action.view;
-    } else if ( action.type === 'EXIT_CHAT' ) {
-      newState.language = null;
-      newState.teacher = null;
-      newState.view = action.view;
-    }
-    return newState;
+    return <Link to='/dashboard'><button>Save</button></Link>;
   }
 
   render() {

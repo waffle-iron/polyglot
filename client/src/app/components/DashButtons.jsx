@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-const ENTER_LAUNCH = 'ENTER_LAUNCH';
+import * as types from '../actionTypes.js';
 
 class DashButtons extends Component {
   constructor(props) {
@@ -11,7 +10,7 @@ class DashButtons extends Component {
     e.preventDefault();
     let teacher = true;
     let view = 1;
-    let action = { type: ENTER_LAUNCH, teacher: teacher, view: view };
+    let action = { type: types.ENTER_LAUNCH, teacher: teacher, view: view };
     this.props.store.dispatch(action);
   }
 
@@ -19,7 +18,7 @@ class DashButtons extends Component {
     e.preventDefault();
     let teacher = false;
     let view = 1;
-    let action = { type: ENTER_LAUNCH, teacher: teacher, view: view };
+    let action = { type: types.ENTER_LAUNCH, teacher: teacher, view: view };
     this.props.store.dispatch(action);
   }
 

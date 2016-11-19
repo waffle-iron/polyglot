@@ -6,7 +6,7 @@ var ApiServices = ComposedComponent => class extends Component {
     super(props);   
   }
   getUserId() {
-    return axios.get('api/users')
+    return axios.get('api/users');
   }
   render() {
     return <ComposedComponent getUserId={this.getUserId} />;
