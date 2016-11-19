@@ -12,7 +12,6 @@ const styles = {
     paddingTop: 200,
   },
 };
-
 class Splash extends Component {
   constructor(props) {
     super(props);
