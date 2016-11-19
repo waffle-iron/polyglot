@@ -20,6 +20,11 @@ var handleAuthReturn = passport.authenticate('facebook', { failureRedirect: '/lo
 
 var handleAuthCB = function(req, res) {
   var user = req.user;
+  var email = user.emails[0].value;
+  db.findUserByEmail(email)
+  .then(function(resp) {
+    console.log('$$$$$$', resp);
+  })
   db.addUser(user.displayName, user.emails[0].value, user.id)
   .then(function(user) {
     res.redirect('/');
