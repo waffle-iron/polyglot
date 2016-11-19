@@ -33,9 +33,6 @@ app.get('/login/facebook/return', strategy.handleAuthReturn, strategy.handleAuth
 
 app.get('/profile', require('connect-ensure-login').ensureLoggedIn(), strategy.ensure);
 
-
-
-
 app.listen(PORT, () => {
   console.log('It\'s Alive!!');
 });
