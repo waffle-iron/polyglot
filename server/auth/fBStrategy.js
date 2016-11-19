@@ -17,18 +17,21 @@ const fBStrategy = new Strategy({
 
 var handleAuth = passport.authenticate('facebook', {scope: ['email']});
 var handleAuthReturn = passport.authenticate('facebook', { failureRedirect: '/login' });
-
+// check this out to see if it works
 var handleAuthCB = function(req, res) {
   var user = req.user;
   var email = user.emails[0].value;
   db.findUserByEmail(email)
   .then(function(resp) {
-    console.log('$$$$$$', resp);
+    if (resp) {
+      res.redirect('/');
+    } else {
+      db.addUser(user.displayName, user.emails[0].value, user.id)
+      .then(function(user) {
+        console.log('user added')
+      });
+    }
   })
-  db.addUser(user.displayName, user.emails[0].value, user.id)
-  .then(function(user) {
-    res.redirect('/');
-  });
 };
 
 var deSerialize = function(email, cb) {
