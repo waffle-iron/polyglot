@@ -13,11 +13,23 @@ router.get('/splash', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
+router.get('/main', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
+});
+
+router.get('/nav', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
+});
+
 router.get('/nav/chat', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
 router.get('/signup', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
+});
+
+router.get('/dashboard', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
