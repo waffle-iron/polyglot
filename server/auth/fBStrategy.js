@@ -5,7 +5,6 @@ const db = require('../../db/controllers/controllers.js');
 const Strategy = require('passport-facebook').Strategy;
 const keys = require('../config/keys.js');
 
-
 const fBStrategy = new Strategy({
   clientID: keys.CLIENT_ID,
   clientSecret: keys.CLIENT_SECRET,
@@ -24,14 +23,14 @@ var handleAuthCB = function(req, res) {
   db.findUserByEmail(email)
   .then(function(resp) {
     if (resp) {
-      res.redirect('/');
+      res.redirect('/dashboard');
     } else {
       db.addUser(user.displayName, user.emails[0].value, user.id)
       .then(function(user) {
-        console.log('user added')
+        console.log('user added');
       });
     }
-  })
+  });
 };
 
 var deSerialize = function(email, cb) {

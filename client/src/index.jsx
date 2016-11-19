@@ -10,7 +10,6 @@ import fourOFour from './app/components/fourOFour';
 
 injectTapEventPlugin();
 
-
 render((
   <Router history={browserHistory}>
     <Route path='/' component={ App }>
@@ -18,6 +17,7 @@ render((
       <Route path='profile' component={ Profile }/>
       <Route path='nav' component={ Dashboard }>
       </Route>
+      <Route path='dashboard' component={ Dashboard }/>
       <Route path='fourOFour' component={ fourOFour }/>
     </Route>
   </Router>

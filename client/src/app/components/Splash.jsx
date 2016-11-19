@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { applyMiddleware, createStore } from 'redux';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -15,11 +16,27 @@ const styles = {
 class Splash extends Component {
   constructor(props) {
     super(props);
-    this.getUser = this.getUser.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
   }
-
-  getUser() {
-    this.props.getUserId().then((id) => { console.log(id); } ); 
+    
+  handleEnter() {
+    new Promise(resolve => {
+      var auth = () => {
+        return window.location = '/login/facebook';
+      }
+      
+      resolve(auth());
+    })
+    .then(()=> {
+      this.props.getUserId().then((user) => { 
+        var id = user.data;
+        if (id > 0) {
+          browserHistory.push('dashboard');
+        } else {
+          browserHistory.push('fourOFour');
+        }
+      }) 
+    })
   }
   
   render () {
@@ -31,15 +48,8 @@ class Splash extends Component {
           <RaisedButton
             label="Sign In"
             secondary
-            onTouchTap={() => this.getUser()}
-          />
-
-          <RaisedButton
-            label="Sign In"
-            secondary
-            onTouchTap={() => window.location = '/login/facebook' }
-          />
-        </div>
+            onTouchTap={() => this.handleEnter() }/>
+  t      </div>
       </div>
     );
   }
