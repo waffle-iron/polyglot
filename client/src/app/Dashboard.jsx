@@ -12,7 +12,7 @@ import $ from 'jquery';
 import Peer from 'peerjs';
 import { apiKeys } from '../../../config/peerjs.config.js';
 
-
+let userId;
 
 // look for reducer not found error
 class Dashboard extends Component {
