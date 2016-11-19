@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
-import ApiServices from './componentServices/ApiServices';
+import ApiServices from '../componentServices/ApiServices';
 
 const styles = {
   container: {
@@ -19,7 +19,7 @@ class Splash extends Component {
   }
 
   getUser() {
-    this.props.getUserId().then((id) => { console.log(id)}) 
+    this.props.getUserId().then((id) => { console.log(id); } ); 
   }
   
   render () {

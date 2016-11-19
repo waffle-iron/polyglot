@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/uberforcats/2016-09-thesis",
   "dependencies": {
+    "axios": "^0.15.2",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "connect-ensure-login": "^0.1.1",

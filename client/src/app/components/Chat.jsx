@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { apiKeys } from '../../../config/peerjs.config.js';
 import $ from 'jquery';
 import SimpleWebRTC from 'simplewebrtc';
 

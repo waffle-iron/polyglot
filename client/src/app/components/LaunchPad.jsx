@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-const ENTER_CHAT = 'ENTER_CHAT';
+import * as types from '../actionTypes';
 
 class LaunchPad extends Component {
   constructor(props) {
@@ -12,7 +11,7 @@ class LaunchPad extends Component {
     let language = document.getElementById('language').value;
     let view = 2;
     let myId = this.props.userId;
-    let action = { type: ENTER_CHAT, myId: myId, language: language, view: view };
+    let action = { type: types.ENTER_CHAT, myId: myId, language: language, view: view };
     this.props.store.dispatch(action);
   }
 

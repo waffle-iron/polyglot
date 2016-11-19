@@ -1,13 +1,13 @@
-const navReducer = (state = {}, action) => {
+export default (state = {}, action) => {
   let newState = JSON.parse(JSON.stringify(state));
-  if ( action.type === 'ENTER_LAUNCH' ) {
+  if ( action.type === 'app/ENTER_LAUNCH' ) {
     newState.teacher = action.teacher;
     newState.view = action.view;
-  } else if ( action.type === 'ENTER_CHAT' ) {
+  } else if ( action.type === 'app/ENTER_CHAT' ) {
     newState.myId = action.myId;
     newState.language = action.language;
     newState.view = action.view;
-  } else if ( action.type === 'EXIT_CHAT' ) {
+  } else if ( action.type === 'app/EXIT_CHAT' ) {
     newState.language = '';
     newState.teacher = false;
     newState.view = action.view;
@@ -15,4 +15,3 @@ const navReducer = (state = {}, action) => {
   return newState;
 };
 
-module.exports = navReducer;
