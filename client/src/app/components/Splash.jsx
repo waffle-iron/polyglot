@@ -35,8 +35,8 @@ class Splash extends Component {
         } else {
           browserHistory.push('fourOFour');
         }
-      }) 
-    })
+      }); 
+    });
   }
   
   render () {
