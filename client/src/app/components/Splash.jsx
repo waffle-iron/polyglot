@@ -9,8 +9,8 @@ import ApiServices from '../componentServices/ApiServices';
 const styles = {
   container: {
     textAlign: 'center',
-    paddingTop: 200,
-  },
+    paddingTop: 100,
+  }
 };
 
 class Splash extends Component {
@@ -41,14 +41,17 @@ class Splash extends Component {
   
   render () {
     return (
-      <div style={styles.container}>
-        <h1>Lango</h1>
-        <h2>learn from native speakers</h2>
-        <div>
-          <RaisedButton
-            label="Sign In"
-            secondary
-            onTouchTap={() => this.handleEnter() }/>
+      <div className='container' style={styles.container}>
+        <div className='textIntro'>
+          <h1 className='titles'>Lango</h1>
+          <h2 className='titles'>Learn languages from native speakers</h2>
+          <div>
+            <RaisedButton
+              className='enterButton'
+              label="Sign In with Facebook"
+              secondary
+              onTouchTap={() => this.handleEnter() }/>
+          </div>
         </div>
       </div>
     );
