@@ -23,7 +23,7 @@ class Splash extends Component {
     new Promise(resolve => {
       var auth = () => {
         return window.location = '/login/facebook';
-      }
+      };
       
       resolve(auth());
     })
