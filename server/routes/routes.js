@@ -29,6 +29,10 @@ router.get('/signup', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
+router.get('/profile', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
+});
+
 router.get('/dashboard', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });

@@ -23,7 +23,7 @@ class Splash extends Component {
     new Promise(resolve => {
       var auth = () => {
         return window.location = '/login/facebook';
-      }
+      };
       
       resolve(auth());
     })
@@ -35,8 +35,8 @@ class Splash extends Component {
         } else {
           browserHistory.push('fourOFour');
         }
-      }) 
-    })
+      }); 
+    });
   }
   
   render () {
@@ -49,7 +49,7 @@ class Splash extends Component {
             label="Sign In"
             secondary
             onTouchTap={() => this.handleEnter() }/>
-  t      </div>
+        </div>
       </div>
     );
   }
