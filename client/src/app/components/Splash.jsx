@@ -49,7 +49,7 @@ class Splash extends Component {
             label="Sign In"
             secondary
             onTouchTap={() => this.handleEnter() }/>
-  t      </div>
+        </div>
       </div>
     );
   }
