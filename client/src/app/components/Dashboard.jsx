@@ -37,7 +37,7 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
-    this.props.getUserId().then( (resp) => { console.log('hhhhh', resp); }); 
+    this.props.getUserId().then( (resp) => { console.log('hhhhh', resp.data); }); 
   }
 
   reDirect() {
