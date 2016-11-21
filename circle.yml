@@ -9,5 +9,5 @@ machine:
 database:
 
   override:
-    - createdb lango_test
-    - knex migrate: latest --env test
+    - "createdb lango_test"
+    - "knex migrate: latest --env test"
