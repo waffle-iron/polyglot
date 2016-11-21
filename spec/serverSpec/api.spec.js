@@ -3,6 +3,7 @@ var expect = require('chai').expect;
 var request = require('request');
 var rp = require('request-promise');
 var resetCache = require('../../server/models/sessions').resetCache;
+var $ = require('jquery');
 
 describe('API tests', function() {
 
@@ -22,10 +23,12 @@ describe('API tests', function() {
       uri: 'http://127.0.0.1:8000/api/users',
       method: 'POST',
       json: {
+        /* eslint-disable */
         first_name: 'Marcus',
         last_name: 'Garvey',
         email: 'marcus.garvey@gmail.com',
         facebook_id: '1234'
+        /* eslint-enable */
       }
     };
     request(reqParams, function(err, response, body) {
@@ -37,13 +40,14 @@ describe('API tests', function() {
   
   it('Should POST data to /api/sessions/:language', function(done) {
     var reqParams = {
-      uri: 'http://localhost:8000/api/sessions/spanish',
+      uri: 'http://127.0.0.1:8000/api/sessions/Spanish',
       method: 'POST',
       json: {
-        user_id: '1234',
-        teacher: false
+        userId: '123',
+        teacher: 'true',
       }
     };
+    
     request(reqParams, function(err, response, body) {
       expect(response.statusCode).to.equal(200);
       done();
@@ -55,8 +59,8 @@ describe('API tests', function() {
       uri: 'http://localhost:8000/api/sessions/french',
       method: 'POST',
       json: {
-        userId: '1234',
-        teacher: false
+        'userId': '1234',
+        'teacher': 'false'
       }
     };
     
@@ -65,7 +69,7 @@ describe('API tests', function() {
       method: 'POST',
       json: {
         userId: '4321',
-        teacher: true
+        teacher: 'true'
       }
     };
 

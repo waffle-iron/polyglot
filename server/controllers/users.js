@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     db.findUserByEmail(req.session.passport.user)
       .then(user => {
         res.status(200).json(user.id);
-    })
+      });
   }
 });
 

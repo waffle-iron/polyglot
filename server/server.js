@@ -8,12 +8,14 @@ const usersController = require('./controllers/users');
 const sessionsController = require('./controllers/sessions');
 const viewRouter = require('./routes/routes');
 const strategy = require('./auth/fBStrategy');
+const bodyParser = require('body-parser');
 
 const PORT = 8000;
 
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
-app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 app.use(express.static('client'));
 app.use(passport.initialize());
