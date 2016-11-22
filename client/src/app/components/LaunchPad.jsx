@@ -4,12 +4,11 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import ApiServices from '../componentServices/ApiServices';
 
-  const style = {
-    textAlign: 'center',
-    paddingTop: 10
-  };
-
-
+const style = {
+  textAlign: 'center',
+  paddingTop: 10
+};
+  
 class LaunchPad extends Component {
   constructor(props) {
     super(props);
@@ -22,12 +21,12 @@ class LaunchPad extends Component {
   }
 
   componentWillMount() {
-    this.props.getLanguages()
-    .then((languages) => { 
-      this.setState({languages: languages.data});
-    });
+   this.props.getLanguages()
+   .then((lang)=>{
+    this.setState({languages: lang.data});
+   }) 
   }
-
+  
   handleSubmit(e, i, value) {
     e.preventDefault();
     let language = value;
@@ -50,3 +49,4 @@ class LaunchPad extends Component {
 }
 
 export default ApiServices(LaunchPad);
+
