@@ -52,6 +52,15 @@ describe('Database Tests', () => {
         });
     });
 
+    it('should find all languages', done => {
+      controllers.findAllLanguages()
+        .then(languages => {
+          expect(languages).to.be.an('object');
+          expect(languages[0].name).to.be.a('string');
+          done();
+        });
+    });
+
     it('should add a learner', done => {
       let learner;
       controllers.addLearner('test@test.com', 'English', 'Beginner')
