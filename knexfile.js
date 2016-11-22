@@ -35,7 +35,6 @@ module.exports = {
       host: 'postgres',
       user: 'lango',
       database: 'lango',
-      // process.env.DATABASE_URL
     },
     migrations: {
       directory: __dirname + '/db/migrations'
