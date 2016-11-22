@@ -4,12 +4,12 @@ exports.seed = function(knex, Promise) {
     .then(() => {
       return Promise.all([
         // Inserts seed entries
-        knex('levels').insert({name: 'Beginner'}),
-        knex('levels').insert({name: 'Elementary'}),
-        knex('levels').insert({name: 'Intermediate'}),
-        knex('levels').insert({name: 'Upper Intermediate'}),
-        knex('levels').insert({name: 'Advanced'}),
-        knex('levels').insert({name: 'Master'})
+        knex('levels').insert({name: 'A1 - Beginner'}),
+        knex('levels').insert({name: 'A2 - Elementary'}),
+        knex('levels').insert({name: 'B1 - Intermediate'}),
+        knex('levels').insert({name: 'B2 - Upper Intermediate'}),
+        knex('levels').insert({name: 'C1 - Advanced'}),
+        knex('levels').insert({name: 'C2 - Master'})
       ]);
     });
 };
