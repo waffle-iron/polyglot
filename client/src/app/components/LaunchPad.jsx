@@ -14,19 +14,19 @@ class LaunchPad extends Component {
     super(props);
     this.state = {
       value: 2,
-      languages: []
+      languages: ['loading']
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.getLanguages = this.getLanguages.bind(this);
   }
 
   componentWillMount() {
-    this.props.getLanguages()
-    .then((languages) => { 
-      this.setState({languages: languages.data});
-    });
+   this.props.getLanguages()
+   .then((lang)=>{
+    this.setState({languages: lang.data});
+   }) 
   }
-
+  
   handleSubmit(e, i, value) {
     e.preventDefault();
     let language = value;
@@ -37,11 +37,13 @@ class LaunchPad extends Component {
 
   render() {
     return (
-      <div style = {style}>
-        <DropDownMenu value={this.state.value} onChange={this.handleSubmit}>
+      <div>
+      <h1>Hello World</h1>
+        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
           {this.state.languages.map((lang, key)=>{
-            return <MenuItem value={key} label="English" primaryText={lang} />;
-          })};
+            console.log(lang, key)
+            return <MenuItem value={key} key={key} label="English" primaryText={lang} />;
+          })}
         </DropDownMenu>
       </div>
     );
@@ -49,3 +51,10 @@ class LaunchPad extends Component {
 }
 
 export default ApiServices(LaunchPad);
+        // <DropDownMenu value={this.state.value} onChange={this.handleSubmit}>
+        //   // still have that async problem, but the previous error was a loose semicolon after the code block
+        // </DropDownMenu>
+          // <MenuItem value={1} label="5 am - 12 pm" primaryText="Morning" />
+          // <MenuItem value={2} label="12 pm - 5 pm" primaryText="Afternoon" />
+          // <MenuItem value={3} label="5 pm - 9 pm" primaryText="Evening" />
+          // <MenuItem value={4} label="9 pm - 5 am" primaryText="Night" />
