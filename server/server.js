@@ -7,7 +7,6 @@ const db = require('../db/controllers/controllers.js');
 const usersController = require('./controllers/users');
 const sessionsController = require('./controllers/sessions');
 const languageController = require('./controllers/languages');
-
 const viewRouter = require('./routes/routes');
 const strategy = require('./auth/fBStrategy');
 const bodyParser = require('body-parser');
@@ -31,7 +30,6 @@ passport.deserializeUser(strategy.deSerialize);
 app.use('/api/users', usersController);
 app.use('/api/sessions', sessionsController);
 app.use('/api/languages', languageController);
-
 app.use('/', viewRouter);
 
 app.get('/login/facebook', strategy.handleAuth);
