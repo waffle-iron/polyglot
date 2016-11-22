@@ -61,4 +61,11 @@ describe('Server Routes', function() {
     });
   });
 
+  it('Should respond all languages when route /api/languages', function(done) {
+    request('http://127.0.0.1:8000/api/languages', function(err, response, body) {
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
+
 });
