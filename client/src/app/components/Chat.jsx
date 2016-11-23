@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import SimpleWebRTC from 'simplewebrtc';
 import { connect } from 'react-redux';
-
-const videoStyle = {
-  height: '75px'
-};
+import VideoChat from './VideoChat';
+import TextChat from './TextChat';
+import CardAdd from './CardAdd';
 
 export class Chat extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ export class Chat extends Component {
     };
     let webrtc = new SimpleWebRTC({
       localVideoEl: 'videoChat',
-      remoteVideosEl: 'remoteVideos',
+      remoteVideosEl: 'inboundVideo',
       autoRequestMedia: true
     });
 
@@ -44,8 +43,9 @@ export class Chat extends Component {
   render () {
     return (
       <div>
-        <div id='remoteVideos'></div>
-        <video style={ videoStyle } id='videoChat'></video>
+        <VideoChat/>
+        <TextChat/>
+        <CardAdd/>
       </div>
     );
   }
