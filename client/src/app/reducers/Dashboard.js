@@ -11,6 +11,8 @@ export default (state = {}, action) => {
     newState.language = null;
     newState.teacher = null;
     newState.view = 0;
+  } else if ( action.type === 'app/ENTER_CARDS' ) {
+    newState.view = 3;
   }
   return newState;
 };
