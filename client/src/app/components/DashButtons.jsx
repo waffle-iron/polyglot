@@ -34,6 +34,13 @@ export class DashButtons extends Component {
           style={style}
           onTouchTap={ this.props.handleLearn.bind(this) }
         />
+        <br />
+        <RaisedButton
+          label="Review Vocab"
+          primary
+          style={style}
+          onTouchTap={ this.props.handleCards.bind(this) }
+        />
        </div>
     );
   }
@@ -45,6 +52,7 @@ const mapStateToProps = ( store ) => {
   };
 };
 
+/* eslint-disable */
 const mapDispatchToProps = ( dispatch ) => {
   return {
     handleTeach: (e) => {
@@ -58,8 +66,14 @@ const mapDispatchToProps = ( dispatch ) => {
       let teacher = false;
       let action = { type: types.ENTER_LAUNCH, teacher: teacher };
       dispatch(action);
+    },
+    handleCards: (e) => {
+      e.preventDefault();
+      let action = { type: types.ENTER_CARDS };
+      dispatch(action);
     }
   };
 };
+/* eslint-enable */
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashButtons);
