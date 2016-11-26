@@ -3,44 +3,46 @@ import * as types from '../actionTypes';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import ApiServices from '../componentServices/ApiServices';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import Badge from '../components/MedalBadge';
 
 const style = {
   textAlign: 'center',
   paddingTop: 10
 };
   
-class LaunchPad extends Component {
+export class LaunchPad extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: 2,
-      languages: []
+      languages: ['loading']
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    // this.getLanguages = this.getLanguages.bind(this);
   }
 
   componentWillMount() {
-   this.props.getLanguages()
-   .then((lang)=>{
-    this.setState({languages: lang.data});
-   }) 
+    return axios.get('api/languages')
+      .then((lang)=>{
+        this.setState({languages: lang.data});
+      });
   }
   
-  handleSubmit(e, i, value) {
-    e.preventDefault();
-    let language = value;
-    let myId = this.props.userId;
-    let action = { type: types.ENTER_CHAT, myId: myId, language: language };
-    this.props.store.dispatch(action);
-  }
+  // handleSubmit(e, i, value) {
+  //   e.preventDefault();
+  //   let language = value;
+  //   let myId = this.props.userId;
+  //   let action = { type: types.ENTER_CHAT, myId: myId, language: language };
+  //   this.props.store.dispatch(action);
+  // }
 
   render() {
     return (
-      <div style = {style}>
-        <DropDownMenu value={this.state.value} onChange={this.handleSubmit}>
+      <div>
+      <h1>Hello World</h1>
+        <DropDownMenu value={this.state.value} onChange={ this.props.handleSubmit }>
           {this.state.languages.map((lang, key)=>{
-            return <MenuItem value={key} label="English" primaryText={lang} />
+            return <MenuItem value={key} key={key} label="English" primaryText={lang} />;
           })}
         </DropDownMenu>
       </div>
@@ -48,5 +50,22 @@ class LaunchPad extends Component {
   }
 }
 
-export default ApiServices(LaunchPad);
+const mapStateToProps = ( store ) => {
+  return {
+    userId: store.userId
+  };
+};
 
+const mapDispatchToProps = ( dispatch, ownProps ) => {
+  return {
+    handleSubmit: ( e, i, value ) => {
+      e.preventDefault();
+      let language = value;
+      let myId = ownProps.userId;
+      let action = { type: types.ENTER_CHAT, myId: myId, language: language };
+      dispatch(action);
+    }
+  };
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )(LaunchPad);
