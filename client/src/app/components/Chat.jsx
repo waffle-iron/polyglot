@@ -19,6 +19,9 @@ export class Chat extends Component {
       teacher: this.props.teacher
     };
     let webrtc = new SimpleWebRTC({
+      // dynamically configure the url
+      // for dev and production environments
+      url: 'http://localhost:8888',
       localVideoEl: 'videoChat',
       remoteVideosEl: 'inboundVideo',
       autoRequestMedia: true
