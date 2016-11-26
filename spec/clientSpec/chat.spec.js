@@ -34,8 +34,8 @@ describe('Chat Component', function () {
 
     expect( wrapper.containsAllMatchingElements([
       <VideoChat/>,
-      <TextChat/>,
-      <CardAdd/>
+      <CardAdd/>,
+      <TextChat/>
     ])).to.be.true;
   });
 

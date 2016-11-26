@@ -1,10 +1,11 @@
 export default (state = {}, action) => {
   let newState = JSON.parse(JSON.stringify(state));
-  if ( action.type === 'app/ENTER_LAUNCH' ) {
+  if ( action.type === 'app/GET_ID' ) {
+    newState.myId = action.myId;
+  } else if ( action.type === 'app/ENTER_LAUNCH' ) {
     newState.teacher = action.teacher;
     newState.view = 1;
   } else if ( action.type === 'app/ENTER_CHAT' ) {
-    newState.myId = action.myId;
     newState.language = action.language;
     newState.view = 2;
   } else if ( action.type === 'app/EXIT_CHAT' ) {
