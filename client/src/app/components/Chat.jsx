@@ -27,11 +27,14 @@ export class Chat extends Component {
     $.post(`/api/sessions/${ language }`, postParams)
       .done((pair) => {
         if ( pair === 'OK' ) {
+          { console.log(pair); }
+          
           // set up answer
           webrtc.on('readyToCall', () => {
             webrtc.joinRoom(JSON.stringify(postParams.userId));
           });
         } else {
+          { console.log(pair); }
           // make a call
           webrtc.on('readyToCall', () => {
             webrtc.joinRoom(pair);
@@ -42,10 +45,11 @@ export class Chat extends Component {
   
   render () {
     return (
-      <div>
+      <div className='chat-container'>
+        <div id='inboundVideo' />
         <VideoChat/>
-        <TextChat/>
         <CardAdd/>
+        <TextChat/>
       </div>
     );
   }
@@ -53,7 +57,7 @@ export class Chat extends Component {
 
 const mapStateToProps = ( store ) => {
   return {
-    userId: store.userId,
+    myId: store.myId,
     teacher: store.teacher,
     language: store.language
   };

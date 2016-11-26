@@ -43,7 +43,7 @@ describe('Dashboard reducer', function() {
     };
 
     let resState = {
-      myId: 123,
+      myId: null,
       pairId: null,
       language: 'Spanish',
       teacher: null,
@@ -62,4 +62,21 @@ describe('Dashboard reducer', function() {
     expect(reducer( initialState, action )).to.eql( initialState ); 
   });
   
+  it('Should handle GET_ID', function() {
+    
+    let action = {
+      type: types.GET_ID,
+      myId: 123
+    };
+    
+    let resState = {
+      myId: 123,
+      pairId: null,
+      language: null,
+      teacher: null,
+      view: 0,
+    };
+    
+    expect(reducer( initialState, action )).to.eql( resState ); 
+  });
 });
