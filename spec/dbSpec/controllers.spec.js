@@ -157,7 +157,61 @@ describe('Database Tests', () => {
         });
     });
 
+    it('should add a card for a user', done => {
+      controllers.addCard('test@test.com', 'I want to learn this', 'this is the translation')
+        .then(response => {
+          return controllers.getCards('test@test.com');
+        })
+        .then(cardArr => {
+          let card = cardArr[0];
+          expect(cardArr.length).to.equal(1);
+          expect(card.user_id).to.equal(1);
+          expect(card.phrase).to.equal('I want to learn this');
+          expect(card.translation).to.equal('this is the translation');
+          done();
+        });
+    });    
+    
+    it('should get all a user\'s cards', done => {
+      controllers.addCard('test@test.com', 'I want to learn this', 'this is the translation')
+        .then(response => {
+          return controllers.addCard('test@test.com', 'Here\'s another phrase', 'this is the other translation');
+        })
+        .then(response => {
+          return controllers.getCards('test@test.com');
+        })
+        .then(cardArr => {
+          expect(cardArr.length).to.equal(2);
+          let card1 = cardArr[0];
+          expect(card1.user_id).to.equal(1);
+          expect(card1.phrase).to.equal('I want to learn this');
+          expect(card1.translation).to.equal('this is the translation');          
 
+          let card2 = cardArr[1];
+          expect(card2.user_id).to.equal(1);
+          expect(card2.phrase).to.equal('Here\'s another phrase');
+          expect(card2.translation).to.equal('this is the other translation');
+          done();
+        });
+    });
+
+    it('should update a user\'s card', done => {
+      controllers.addCard('test@test.com', 'I want to learn this', 'this is the translation')
+        .then(response => {
+          return controllers.updateCard(1, 'this is the updated phrase', 'this is the updated translation');
+        })
+        .then(response => {
+          return controllers.getCards('test@test.com');
+        })
+        .then(cardArr => {
+          expect(cardArr.length).to.equal(1);
+          let card = cardArr[0];
+          expect(card.user_id).to.equal(1);
+          expect(card.phrase).to.equal('this is the updated phrase');
+          expect(card.translation).to.equal('this is the updated translation');      
+          done();
+        });
+    });    
 
   });
 });
