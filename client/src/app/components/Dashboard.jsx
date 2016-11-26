@@ -7,6 +7,7 @@ import { browserHistory } from 'react-router';
 import ApiServices from '../componentServices/ApiServices';
 import LaunchPad from './LaunchPad';
 import Chat from './Chat';
+import Cards from './Cards';
 import DashButtons from './DashButtons';
 import $ from 'jquery';
 import dashReducer from '../reducers/Dashboard';
@@ -50,6 +51,8 @@ export class Dashboard extends Component {
       comp = <LaunchPad userId={ userId }/>
     } else if ( viewControl === 2 ) {
       comp = <Chat/>
+    } else if ( viewControl === 3 ) {
+      comp = <Cards/>
     }
 
     /* eslint-enable */ 
