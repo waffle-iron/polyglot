@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { applyMiddleware, createStore } from 'redux';
+import * as types from '../actionTypes';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import createLogger from 'redux-logger';
@@ -9,12 +10,12 @@ import LaunchPad from './LaunchPad';
 import Chat from './Chat';
 import Cards from './Cards';
 import DashButtons from './DashButtons';
-import $ from 'jquery';
 import dashReducer from '../reducers/Dashboard';
 import AppBar from 'material-ui/AppBar';
 import SideDrawer from './SideDrawer';
 import { connect } from 'react-redux';
 import MedalBadge from '../components/MedalBadge';
+import axios from 'axios';
 
 let userId;
 
@@ -30,9 +31,9 @@ export class Dashboard extends Component {
   constructor(props) {
     super(props);
 
-    $.get('/api/users')
-      .done((data) => {
-        userId = data;
+    axios.get('/api/users')
+      .then((resp) => {
+        this.props.sendId( resp.data );
       });
   }
 
@@ -48,7 +49,7 @@ export class Dashboard extends Component {
     if ( viewControl === 0 ) {
       comp = <DashButtons/>
     } else if ( viewControl === 1 ) {
-      comp = <LaunchPad userId={ userId }/>
+      comp = <LaunchPad myId={ userId }/>
     } else if ( viewControl === 2 ) {
       comp = <Chat/>
     } else if ( viewControl === 3 ) {
@@ -80,4 +81,13 @@ const mapStateToProps = ( store ) => {
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = ( dispatch, ownProps ) => {
+  return {
+    sendId: ( newId ) => {
+      let action = { type: types.GET_ID, myId: newId };
+      dispatch(action);
+    }
+  };
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )(Dashboard);

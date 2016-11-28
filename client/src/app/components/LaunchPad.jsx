@@ -56,18 +56,15 @@ export class LaunchPad extends Component {
 
 const mapStateToProps = ( store ) => {
   return {
-    userId: store.userId
   };
 };
 
 const mapDispatchToProps = ( dispatch, ownProps ) => {
   return {
     handleSubmit: ( e, i, value, fourth ) => {
-      console.log('Fourth', languages.data[ value ]);
       e.preventDefault();
       let language = languages.data[ value ];
-      let myId = ownProps.userId;
-      let action = { type: types.ENTER_CHAT, myId: myId, language: language };
+      let action = { type: types.ENTER_CHAT, language: language };
       dispatch(action);
     }
   };
