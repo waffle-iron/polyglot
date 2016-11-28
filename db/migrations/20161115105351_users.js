@@ -25,6 +25,13 @@ exports.up = function(knex, Promise) {
     knex.schema.createTableIfNotExists('levels', table => {
       table.increments();
       table.string('name');
+    }),    
+    knex.schema.createTableIfNotExists('cards', table => {
+      table.increments();
+      table.string('phrase');
+      table.string('translation');
+      table.timestamp('created_at').defaultTo(knex.fn.now());
+      table.integer('user_id').references('id').inTable('users');
     }),
     knex.schema.createTableIfNotExists('sessions', table => {
       table.increments();
@@ -45,6 +52,7 @@ exports.down = function(knex, Promise) {
     knex.raw('DROP TABLE learners CASCADE'),
     knex.raw('DROP TABLE teachers CASCADE'),
     knex.raw('DROP TABLE languages CASCADE'),
+    knex.raw('DROP TABLE cards CASCADE'),
     knex.raw('DROP TABLE sessions CASCADE')
   ]);
 };

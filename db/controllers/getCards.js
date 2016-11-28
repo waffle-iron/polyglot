@@ -4,7 +4,10 @@ module.exports = (email) => {
   return new Promise((resolve, reject) => {
     db('users').select().where({email: email})
       .then(response => {
-        resolve(response[0]);
+        resolve(db('cards').select()
+          .where({
+            user_id: response[0].id
+          }));
       })
       .catch(err => {
         reject(err);
