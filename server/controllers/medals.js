@@ -3,22 +3,15 @@ const router = express.Router();
 const db = require('../../db/controllers/controllers.js');
 
 router.get('/', (req, res) => {
-  if (!req.session.passport) {
-    res.status(200).json(0);
+  if ( !req.session.passport ) {
+    res.sendStatus(401);
   } else {
-    db.findUserByEmail(req.session.passport.user)
-      .then(user => {
-        res.status(200).json(user.id);
-      });
+    // add in db logic
+    res.sendStatus(200);
   }
 });
 
 router.post('/', (req, res) => {
-  // add in additonal logic
-  res.sendStatus(200);
-});
-
-router.post('/medals', (req, res) => {
   if ( !req.session.passport ) {
     res.sendStatus(401);
   } else {
