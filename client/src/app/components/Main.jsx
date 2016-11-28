@@ -5,7 +5,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Splash from './Splash';
 import TitleBar from './TitleBar';
 
-
 const muiTheme = getMuiTheme({
   palette: {
     accent1Color: indigo500,

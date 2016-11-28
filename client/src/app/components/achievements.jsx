@@ -3,18 +3,24 @@ import { browserHistory } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
 import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
+import NavBar from './NavBar';
 
 
 // list all medals in a grid with type of medal, description, time
 const style = {
-  backgroundImage: "url('../src/public/img/speak.jpeg')",
-  backgroundSize: '100px 100px',
-  backgroundRepeat: 'no-repeat',
-  height: 100,
-  width: 100,
-  margin: 20,
-  textAlign: 'center',
-  display: 'inline-block',
+  paper: {
+    backgroundImage: "url('../src/public/img/speak.jpeg')",
+    backgroundSize: '100px 100px',
+    backgroundRepeat: 'no-repeat',
+    height: 100,
+    width: 100,
+    margin: 20,
+    textAlign: 'center',
+    display: 'inline-block'
+  },
+  container: {
+    textAlign: 'center'
+  }
 };
 
 class Achievements extends Component {
@@ -29,13 +35,14 @@ class Achievements extends Component {
 
   render() {
     return (
-      <div>
+      <div style={style.container}>
+        <NavBar />
         <h1>Achivements</h1>
         {this.state.allMedals.map((medal, key)=>{
           return(
             <div key={key}>
               <Paper 
-              style={style} 
+              style={style.paper} 
               zDepth={5} 
               circle={true}>
               </Paper>
@@ -47,7 +54,7 @@ class Achievements extends Component {
           return(
             <div key={key}>
               <Paper 
-              style={style} 
+              style={style.paper} 
               zDepth={5} 
               circle={true}>
               </Paper>
