@@ -14,3 +14,5 @@ server/config/keys.js
 
 client/src/public/bundle.js
 client/src/public/bundle.js.map
+
+.DS_Store

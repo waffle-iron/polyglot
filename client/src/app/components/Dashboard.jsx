@@ -14,6 +14,7 @@ import dashReducer from '../reducers/Dashboard';
 import AppBar from 'material-ui/AppBar';
 import SideDrawer from './SideDrawer';
 import { connect } from 'react-redux';
+import MedalBadge from '../components/MedalBadge';
 import axios from 'axios';
 
 let userId;
@@ -62,8 +63,8 @@ export class Dashboard extends Component {
         <AppBar
           title="Lango"
           titleStyle={{ textAlign: 'center' }}
-          showMenuIconButton={false}
-        >
+          showMenuIconButton={false}>
+          <MedalBadge />
           <SideDrawer />
         </AppBar>
         <div style={styles.container}>
