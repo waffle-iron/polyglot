@@ -55,13 +55,8 @@ describe('Database Tests', () => {
     it('should find all languages', done => {
       controllers.findAllLanguages()
         .then(languages => {
-<<<<<<< HEAD
-          expect(languages).to.be.an('object');
-          expect(languages[0].name).to.be.a('string');
-=======
           expect(Array.isArray(languages)).to.equal(true);
           expect(languages[0]).to.be.a('string');
->>>>>>> 22ad1412614608a9a3451fcc8e09b405f5920a9e
           done();
         });
     });
