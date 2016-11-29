@@ -1,6 +1,9 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 const db = require('../../db/controllers/controllers.js');
+const matchUsers = require('../models/matching').matchUsers; 
 
 router.get('/', (req, res) => {
   if (!req.session.passport) {
@@ -25,6 +28,14 @@ router.post('/medals', (req, res) => {
     // add in db logic
     res.sendStatus(200);
   }
+});
+
+router.post('/match', ( req, res ) => {
+  // add in db and authentication logic
+  console.log('REQ BODY', req.body);
+  let result = matchUsers({ userId: req.body.userId, pairId: req.body.pairId, match: JSON.parse( req.body.match ) });
+  res.status(200).json( result );
+  console.log('MATCHING RESULT', result);
 });
 
 module.exports = router;

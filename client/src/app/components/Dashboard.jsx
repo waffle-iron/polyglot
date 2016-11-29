@@ -11,6 +11,7 @@ import NavBar from './NavBar';
 import Chat from './Chat';
 import Cards from './Cards';
 import Credits from './Credits';
+import ExitChat from './ExitChat';
 import DashButtons from './DashButtons';
 import dashReducer from '../reducers/Dashboard';
 import AppBar from 'material-ui/AppBar';
@@ -25,7 +26,7 @@ const style = {
     paddingTop: 100,
   },
   navContainer: {
-   textAlign: 'center',
+    textAlign: 'center',
   }, 
   credits: {
     margin: '0px 0px 0px 20px',
@@ -46,7 +47,8 @@ export class Dashboard extends Component {
   render() {
     let viewControl = this.props.view;
     let comp = null;
-
+    
+    /* eslint-disable */
     if ( viewControl === 0 ) {
       comp = <DashButtons/>
     } else if ( viewControl === 1 ) {
@@ -55,8 +57,10 @@ export class Dashboard extends Component {
       comp = <Chat/>
     } else if ( viewControl === 3 ) {
       comp = <Cards/>
-    }
-
+    } else if ( viewControl === 4 ) {
+      comp = <ExitChat/>
+    } 
+    /* eslint-enable */
     return (
       <div>
         <div style={style.navContainer}>

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import VideoChat from './VideoChat';
 import TextChat from './TextChat';
 import CardAdd from './CardAdd';
+import * as types from '../actionTypes.js';
 
 export class Chat extends Component {
   constructor(props) {
@@ -19,7 +20,8 @@ export class Chat extends Component {
       url: 'http://localhost:8888',
       localVideoEl: 'videoChat',
       remoteVideosEl: 'inbound-video',
-      autoRequestMedia: true
+      autoRequestMedia: true,
+      nick: this.props.myId
     });
     this.leave = () => {
       this.webrtc.leaveRoom();
@@ -44,11 +46,19 @@ export class Chat extends Component {
           this.webrtc.on('readyToCall', () => {
             this.webrtc.joinRoom(JSON.stringify(postParams.userId));
           });
+          this.webrtc.on('videoAdded', ( video, peer ) => {
+            { console.log('PEER ANS', peer.nick); }
+            this.props.getPeer( peer.nick ); 
+          });
         } else {
           { console.log(pair); }
           // make a call
           this.webrtc.on('readyToCall', () => {
             this.webrtc.joinRoom(pair);
+          });
+          this.webrtc.on('videoAdded', ( video, peer ) => {
+            { console.log('PEER CALL', peer.nick); }
+            this.props.getPeer( peer.nick );
           });
         }
       });
@@ -73,4 +83,13 @@ const mapStateToProps = ( store ) => {
   };
 };
 
-export default connect( mapStateToProps )( Chat );
+const mapDispatchToProps = ( dispatch, ownProps ) => {
+  return {
+    getPeer: ( peerId ) => {
+      let action = { type: types.ADD_PAIR, pairId: peerId };
+      dispatch( action );
+    }
+  };
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( Chat );

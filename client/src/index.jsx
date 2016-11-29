@@ -23,8 +23,7 @@ let initialState = {
   pairId: null,
   language: null,
   teacher: null,
-  view: 0,
-  chatModal: false
+  view: 0
 };
 
 let store = createStore(dashReducer, initialState, applyMiddleware( thunk, promise, logger ));

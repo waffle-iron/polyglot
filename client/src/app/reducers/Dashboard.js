@@ -11,14 +11,14 @@ export default (state = {}, action) => {
   } else if ( action.type === 'app/EXIT_CHAT' ) {
     newState.language = null;
     newState.teacher = null;
-    newState.chatModal = false;
-    newState.view = 0;
+    newState.view = 4;
   } else if ( action.type === 'app/ENTER_CARDS' ) {
     newState.view = 3;
-  } else if ( action.type === 'app/CHAT_MODAL' ) {
-    newState.chatModal = true;
-  } else if ( action.type === 'app/CLOSE_CHAT_MODAL' ) {
-    newState.chatModal = false;
+  } else if ( action.type === 'app/ADD_PAIR' ) {
+    newState.pairId = action.pairId;
+  } else if ( action.type === 'app/RESET' ) {
+    newState.pairId = null;
+    newState.view = 0;
   }
   return newState;
 };
