@@ -19,10 +19,6 @@ export class DashButtons extends Component {
     };
   }
 
-  handleAchievements() {
-    
-  }
-
   render() {
     return (
       <div style={style}>
@@ -38,19 +34,6 @@ export class DashButtons extends Component {
           primary
           style={style}
           onTouchTap={ this.props.handleLearn.bind(this) }
-        />
-        <br />
-        <RaisedButton
-          label="Review Vocab"
-          primary
-          style={style}
-          onTouchTap={ this.props.handleCards.bind(this) }
-        />
-        <RaisedButton
-          label="Achievements"
-          primary
-          style={style}
-          onTouchTap={ browserHistory.push('achievements') }
         />
        </div>
     );

@@ -7,23 +7,25 @@ import createLogger from 'redux-logger';
 import { browserHistory } from 'react-router';
 import ApiServices from '../componentServices/ApiServices';
 import LaunchPad from './LaunchPad';
+import NavBar from './NavBar';
 import Chat from './Chat';
 import Cards from './Cards';
 import DashButtons from './DashButtons';
 import dashReducer from '../reducers/Dashboard';
 import AppBar from 'material-ui/AppBar';
-import SideDrawer from './SideDrawer';
 import { connect } from 'react-redux';
-import MedalBadge from '../components/MedalBadge';
 import axios from 'axios';
 
 let userId;
 
-const styles = {
+const style = {
   container: {
     textAlign: 'center',
     paddingTop: 100,
-  }
+  },
+  navContainer: {
+   textAlign: 'center',
+  } 
 };
 
 // look for reducer not found error
@@ -35,11 +37,6 @@ export class Dashboard extends Component {
       .then((resp) => {
         this.props.sendId( resp.data );
       });
-  }
-
-  /* eslint-disable */
-  reDirect() {
-    return <Link to='/dashboard'><button>Save</button></Link>
   }
 
   render() {
@@ -56,18 +53,12 @@ export class Dashboard extends Component {
       comp = <Cards/>
     }
 
-    /* eslint-enable */ 
-
     return (
       <div>
-        <AppBar
-          title="Lango"
-          titleStyle={{ textAlign: 'center' }}
-          showMenuIconButton={false}>
-          <MedalBadge />
-          <SideDrawer />
-        </AppBar>
-        <div style={styles.container}>
+        <div style={style.navContainer}>
+          <NavBar />        
+        </div>
+        <div style={style.container}>
           { comp }
         </div>
       </div>

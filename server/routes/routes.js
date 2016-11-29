@@ -41,4 +41,8 @@ router.get('/achievements', (req, res) => {
   res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
 });
 
+router.get('/cards', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '../../client')});
+});
+
 module.exports = router;

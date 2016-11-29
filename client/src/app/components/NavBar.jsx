@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {browserHistory} from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
@@ -25,9 +26,10 @@ class NavBar extends Component {
           
           <AppBar title="Lango" onLeftIconButtonTouchTap={ ()=>this.handleToggle() } />
           <div className="innerDrawer">
-            <MenuItem onTouchTap={ ()=>this.handleToggle() }>DashBoard</MenuItem>
-            <MenuItem onTouchTap={ ()=>this.handleToggle() }>Profile</MenuItem>
-            <MenuItem onTouchTap={ ()=>this.handleToggle() }>Achievements</MenuItem>
+            <MenuItem onTouchTap={ ()=>browserHistory.push('dashboard') }>DashBoard</MenuItem>
+            <MenuItem onTouchTap={ ()=>browserHistory.push('Profile') }>Profile</MenuItem>
+            <MenuItem onTouchTap={ ()=>browserHistory.push('achievements') }>Achievements</MenuItem>
+            <MenuItem onTouchTap={ ()=>browserHistory.push('cards') }>Review Vocab</MenuItem>
           </div>
         </Drawer>
       </div>

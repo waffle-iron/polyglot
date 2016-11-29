@@ -5,7 +5,6 @@ import MenuItem from 'material-ui/MenuItem';
 import ApiServices from '../componentServices/ApiServices';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Badge from '../components/MedalBadge';
 
 const style = {
   textAlign: 'center',
