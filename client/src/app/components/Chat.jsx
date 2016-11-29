@@ -9,6 +9,21 @@ import CardAdd from './CardAdd';
 export class Chat extends Component {
   constructor(props) {
     super(props);
+
+    // This is in the constructor
+    // bc it needs to happen before
+    // the component mounts
+    this.webrtc = new SimpleWebRTC({
+      // TODO: dynamically configure the url
+      // for dev and production environments
+      url: 'http://localhost:8888',
+      localVideoEl: 'videoChat',
+      remoteVideosEl: 'inbound-video',
+      autoRequestMedia: true
+    });
+    this.leave = () => {
+      this.webrtc.leaveRoom();
+    };
   }
   
   componentDidMount() {
@@ -18,14 +33,7 @@ export class Chat extends Component {
       userId: this.props.myId,
       teacher: this.props.teacher
     };
-    let webrtc = new SimpleWebRTC({
-      // dynamically configure the url
-      // for dev and production environments
-      url: 'http://localhost:8888',
-      localVideoEl: 'videoChat',
-      remoteVideosEl: 'inboundVideo',
-      autoRequestMedia: true
-    });
+    
 
     $.post(`/api/sessions/${ language }`, postParams)
       .done((pair) => {
@@ -33,14 +41,14 @@ export class Chat extends Component {
           { console.log(pair); }
           
           // set up answer
-          webrtc.on('readyToCall', () => {
-            webrtc.joinRoom(JSON.stringify(postParams.userId));
+          this.webrtc.on('readyToCall', () => {
+            this.webrtc.joinRoom(JSON.stringify(postParams.userId));
           });
         } else {
           { console.log(pair); }
           // make a call
-          webrtc.on('readyToCall', () => {
-            webrtc.joinRoom(pair);
+          this.webrtc.on('readyToCall', () => {
+            this.webrtc.joinRoom(pair);
           });
         }
       });
@@ -49,8 +57,7 @@ export class Chat extends Component {
   render () {
     return (
       <div className='chat-container'>
-        <div id='inboundVideo' />
-        <VideoChat/>
+        <VideoChat leave={ this.leave }/>
         <CardAdd/>
         <TextChat/>
       </div>

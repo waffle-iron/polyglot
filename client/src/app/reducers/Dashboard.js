@@ -11,9 +11,14 @@ export default (state = {}, action) => {
   } else if ( action.type === 'app/EXIT_CHAT' ) {
     newState.language = null;
     newState.teacher = null;
+    newState.chatModal = false;
     newState.view = 0;
   } else if ( action.type === 'app/ENTER_CARDS' ) {
     newState.view = 3;
+  } else if ( action.type === 'app/CHAT_MODAL' ) {
+    newState.chatModal = true;
+  } else if ( action.type === 'app/CLOSE_CHAT_MODAL' ) {
+    newState.chatModal = false;
   }
   return newState;
 };
