@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-// import AppBar from './AppBar';
-import Dashboard from './Dashboard';
-// import SelectableLanguages from './SelectableLanguages';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Checkbox from 'material-ui/Checkbox';
 import {List, ListItem} from 'material-ui/List';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import Checkbox from 'material-ui/Checkbox';
+import { indigo500 } from 'material-ui/styles/colors';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
-import { indigo500 } from 'material-ui/styles/colors';
+// import AppBar from './AppBar';
+import Dashboard from './Dashboard';
+import NavBar from './NavBar';
 import LearningChips from './LearningChips';
 
-const styles = {
+// import SelectableLanguages from './SelectableLanguages';
+const style = {
   container: {
     textAlign: 'center',
-    // width: '50%',
     margin: 'auto',
   },
+  navContainer:{
+    textAlign: 'center',
+  }
 };
 
 class Profile extends Component {
@@ -45,19 +48,22 @@ class Profile extends Component {
 
     return (
       <div>
-        <div style={styles.container}>
-        <h3>Profile</h3>
-        <Link to='/dashboard'><RaisedButton label="Save" primary></RaisedButton></Link>
-        <br />
-        <h4>Learning Languages</h4>
-        <LearningChips />
-        <h4>Teaching Languages</h4>
+        <div style={ style.navContainer }>
+          <NavBar />
+        </div>
+        <div style={style.container}>
+          <h3>Profile</h3>
+          <Link to='/dashboard'><RaisedButton label="Save" primary></RaisedButton></Link>
+          <br />
+          <h4>Learning Languages</h4>
+          <LearningChips />
+          <h4>Teaching Languages</h4>
           <List>
             {teach}
           </List>
         <h4>New Language</h4>
           <TextField
-            inputStyle={styles.container}>
+            inputStyle={style.container}>
           </TextField>
           <br />
           <RaisedButton
