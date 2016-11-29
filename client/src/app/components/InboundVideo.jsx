@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class InboundVideo extends Component {
   render() {
-    return <div class='inbound-video'></div>;
+    return <div id='inbound-video'/>;
   }
 }
 

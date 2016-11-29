@@ -8,6 +8,7 @@ let initialState = {
   language: null,
   teacher: null,
   view: 0,
+  chatModal: false
 };
 
 describe('Dashboard reducer', function() {
@@ -28,6 +29,7 @@ describe('Dashboard reducer', function() {
       language: null,
       teacher: true,
       view: 1,
+      chatModal: false
     };
     
     expect(reducer( initialState, action )).to.eql( resState );
@@ -48,6 +50,7 @@ describe('Dashboard reducer', function() {
       language: 'Spanish',
       teacher: null,
       view: 2,
+      chatModal: false
     };
     
     expect(reducer( initialState, action )).to.eql( resState );
@@ -75,8 +78,46 @@ describe('Dashboard reducer', function() {
       language: null,
       teacher: null,
       view: 0,
+      chatModal: false
     };
     
     expect(reducer( initialState, action )).to.eql( resState ); 
+  });
+
+  it('Should handle CHAT_MODAL', function() {
+    
+    let action = {
+      type: types.CHAT_MODAL,
+    };
+    
+    let resState = {
+      myId: null,
+      pairId: null,
+      language: null,
+      teacher: null,
+      view: 0,
+      chatModal: true
+    };
+    
+    expect(reducer( initialState, action )).to.eql( resState ); 
+  });
+
+  it('Should handle CLOSE_CHAT_MODAL', function() {
+    
+    let action = {
+      type: types.CLOSE_CHAT_MODAL,
+    };
+    
+    let resState = {
+      myId: null,
+      pairId: null,
+      language: null,
+      teacher: null,
+      view: 0,
+      chatModal: false
+    };
+    
+    expect(reducer( initialState, action )).to.eql( resState ); 
+
   });
 });
