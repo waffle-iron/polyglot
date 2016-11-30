@@ -10,6 +10,7 @@ import LaunchPad from './LaunchPad';
 import NavBar from './NavBar';
 import Chat from './Chat';
 import Cards from './Cards';
+import Credits from './Credits';
 import DashButtons from './DashButtons';
 import dashReducer from '../reducers/Dashboard';
 import AppBar from 'material-ui/AppBar';
@@ -25,7 +26,10 @@ const style = {
   },
   navContainer: {
    textAlign: 'center',
-  } 
+  }, 
+  credits: {
+    margin: '0px 0px 0px 20px',
+  }
 };
 
 // look for reducer not found error
@@ -57,6 +61,9 @@ export class Dashboard extends Component {
       <div>
         <div style={style.navContainer}>
           <NavBar />        
+        </div>
+        <div style={style.credits}>
+          <Credits/>
         </div>
         <div style={style.container}>
           { comp }
