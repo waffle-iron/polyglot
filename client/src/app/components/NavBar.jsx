@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
 import AppBar from 'material-ui/AppBar';
 
 class NavBar extends Component {
@@ -25,7 +24,6 @@ class NavBar extends Component {
           onLeftIconButtonTouchTap={ ()=>this.handleToggle() }
         />
         <Drawer open={this.state.open}>
-          
           <AppBar title="Lango" onLeftIconButtonTouchTap={ ()=>this.handleToggle() } />
           <div className="innerDrawer">
             <MenuItem onTouchTap={ ()=>browserHistory.push('dashboard') }>DashBoard</MenuItem>
