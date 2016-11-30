@@ -10,6 +10,7 @@ import LaunchPad from './LaunchPad';
 import NavBar from './NavBar';
 import Chat from './Chat';
 import Cards from './Cards';
+import Credits from './Credits';
 import DashButtons from './DashButtons';
 import dashReducer from '../reducers/Dashboard';
 import AppBar from 'material-ui/AppBar';
