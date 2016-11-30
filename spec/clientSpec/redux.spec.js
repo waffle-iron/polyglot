@@ -8,7 +8,6 @@ let initialState = {
   language: null,
   teacher: null,
   view: 0,
-  chatModal: false
 };
 
 describe('Dashboard reducer', function() {
@@ -28,8 +27,7 @@ describe('Dashboard reducer', function() {
       pairId: null,
       language: null,
       teacher: true,
-      view: 1,
-      chatModal: false
+      view: 1
     };
     
     expect(reducer( initialState, action )).to.eql( resState );
@@ -49,8 +47,7 @@ describe('Dashboard reducer', function() {
       pairId: null,
       language: 'Spanish',
       teacher: null,
-      view: 2,
-      chatModal: false
+      view: 2
     };
     
     expect(reducer( initialState, action )).to.eql( resState );
@@ -62,7 +59,15 @@ describe('Dashboard reducer', function() {
       type: types.EXIT_CHAT,
     };
     
-    expect(reducer( initialState, action )).to.eql( initialState ); 
+    let reState = {
+      myId: null,
+      pairId: null,
+      language: null,
+      teacher: null,
+      view: 4
+    };
+    
+    expect(reducer( initialState, action )).to.eql( reState ); 
   });
   
   it('Should handle GET_ID', function() {
@@ -77,47 +82,19 @@ describe('Dashboard reducer', function() {
       pairId: null,
       language: null,
       teacher: null,
-      view: 0,
-      chatModal: false
+      view: 0
     };
     
     expect(reducer( initialState, action )).to.eql( resState ); 
   });
 
-  it('Should handle CHAT_MODAL', function() {
-    
+  it('Should handle RESET', function() {
     let action = {
-      type: types.CHAT_MODAL,
+      type: types.RESET,
     };
     
-    let resState = {
-      myId: null,
-      pairId: null,
-      language: null,
-      teacher: null,
-      view: 0,
-      chatModal: true
-    };
-    
-    expect(reducer( initialState, action )).to.eql( resState ); 
-  });
-
-  it('Should handle CLOSE_CHAT_MODAL', function() {
-    
-    let action = {
-      type: types.CLOSE_CHAT_MODAL,
-    };
-    
-    let resState = {
-      myId: null,
-      pairId: null,
-      language: null,
-      teacher: null,
-      view: 0,
-      chatModal: false
-    };
-    
-    expect(reducer( initialState, action )).to.eql( resState ); 
+    expect(reducer( initialState, action )).to.eql( initialState ); 
 
   });
+
 });

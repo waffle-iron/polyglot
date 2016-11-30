@@ -7,6 +7,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { connect } from 'react-redux';
 import * as types from '../actionTypes.js';
+import axios from 'axios';
 
 export class VideoChat extends Component {
   constructor( props ) {
@@ -18,18 +19,9 @@ export class VideoChat extends Component {
       <div>
         <InboundVideo/>
         <OutboundVideo/>
-        <FloatingActionButton style={{color: 'white'}} onTouchTap={ this.props.handleOpen }>
+        <FloatingActionButton style={{color: 'white'}} onTouchTap={ this.props.handleClose }>
           <ContentAdd/>
         </FloatingActionButton>
-        <Dialog
-          title='Exit Chat'
-          modal={ false }
-          open={ this.props.chatModal }
-          onRequestClose={ this.props.handleClose }
-          autoScrollBodyContent={true}
-        >
-        <ExitChat/>
-        </Dialog>
       </div>
     );
   }
@@ -37,20 +29,15 @@ export class VideoChat extends Component {
 
 const mapStateToProps = ( store ) => {
   return {
-    chatModal: store.chatModal
   };
 };
 
 /* eslint-disable */
 const mapDispatchToProps = ( dispatch, ownProps ) => {
   return {
-    handleOpen: () => {
-      ownProps.leave();
-      let action = { type: types.CHAT_MODAL };
-      dispatch( action );
-    },
     handleClose: () => {
-      let action = { type: types.CLOSE_CHAT_MODAL };
+      ownProps.leave();
+      let action = { type: types.EXIT_CHAT };
       dispatch( action );
     }
   };
