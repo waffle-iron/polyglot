@@ -40,4 +40,8 @@ describe('Profile Component', function () {
     const wrapper = shallow(<Profile />);
     expect(wrapper.find(ProgressBar)).to.have.length(3);
   });
+  it('Should have a username state', function () {
+    const wrapper = shallow(<Profile />);
+    expect(wrapper.state().username).to.be.a.string;
+  });
 });
