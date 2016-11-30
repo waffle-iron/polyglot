@@ -25,7 +25,10 @@ const style = {
   },
   navContainer: {
    textAlign: 'center',
-  } 
+  }, 
+  credits: {
+    margin: '0px 0px 0px 20px',
+  }
 };
 
 // look for reducer not found error
@@ -57,6 +60,9 @@ export class Dashboard extends Component {
       <div>
         <div style={style.navContainer}>
           <NavBar />        
+        </div>
+        <div style={style.credits}>
+          <Credits/>
         </div>
         <div style={style.container}>
           { comp }

@@ -12,7 +12,9 @@ class NavBar extends Component {
     this.handleToggle = this.handleToggle.bind(this);
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
+  handleToggle(){
+    this.setState({open: !this.state.open});
+  }
 
   render() {
     return (

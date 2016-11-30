@@ -8,7 +8,7 @@ import { browserHistory } from 'react-router';
 
 const style = {
   textAlign: 'center',
-  margin: 12,
+  margin: '50px',
 };
 
 export class DashButtons extends Component {
@@ -34,21 +34,6 @@ export class DashButtons extends Component {
           primary
           style={style}
           onTouchTap={ this.props.handleLearn.bind(this) }
-        />
-        <br />
-        <RaisedButton
-          label="Review Vocab"
-          primary
-          style={style}
-          onTouchTap={ this.props.handleCards.bind(this) }
-        />
-        <RaisedButton
-          label="Achievements"
-          primary
-          style={style}
-          onTouchTap={ () => {
-            browserHistory.push('achievements');
-          }}
         />
        </div>
     );
