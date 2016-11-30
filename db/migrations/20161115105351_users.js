@@ -20,7 +20,8 @@ exports.up = function(knex, Promise) {
     }),    
     knex.schema.createTableIfNotExists('learners', table => {
       table.increments();
-      table.integer('user_id').references('id').inTable('users');
+      table.integer('user_id')
+      // .references('id').inTable('users');
       table.integer('language_id').references('id').inTable('languages');
       table.integer('level_id').references('id').inTable('levels');
     }),

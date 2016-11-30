@@ -6,12 +6,17 @@ const db = require('../../db/controllers/controllers.js');
 const matchUsers = require('../models/matching').matchUsers; 
 
 router.get('/', (req, res) => {
+  console.log('user------', req.user);
+  console.log('session-----', req.session);
+  console.log('passport-----', req.session.passport);
   if (!req.session.passport) {
+    console.log('------totally stayed home------');
     res.status(200).json(0);
   } else {
+    console.log('we are fucking out here!!!!!!', req.session.passport.user);
     db.findUserByEmail(req.session.passport.user)
       .then(user => {
-        res.status(200).json(user.id);
+        res.status(200).json(user);
       });
   }
 });
