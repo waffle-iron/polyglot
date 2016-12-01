@@ -16,7 +16,7 @@ export class VideoChat extends Component {
 
   render() {
     return (
-      <div>
+      <div className='video-container'>
         <InboundVideo/>
         <OutboundVideo/>
         <FloatingActionButton style={{color: 'white'}} onTouchTap={ this.props.handleClose }>
