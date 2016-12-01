@@ -22,8 +22,7 @@ let userId;
 
 const style = {
   container: {
-    textAlign: 'center',
-    paddingTop: 100,
+    textAlign: 'center'
   },
   navContainer: {
     textAlign: 'center',
