@@ -234,6 +234,20 @@ describe('Database Tests', () => {
         });
     });
 
+    it('should delete a user\'s card', done => {
+      controllers.addCard('test@test.com', 'I want to learn this', 'this is the translation')
+        .then(response => {
+          return controllers.deleteCard(1);
+        })
+        .then(response => {
+          return controllers.getCards('test@test.com');
+        })
+        .then(response => {
+          expect(response.length).to.equal(0);
+          done();
+        });
+    });
+
     it('should update a user\'s star count', done => {
       controllers.updateStars('test@test.com', 10)
         .then(() => {
@@ -390,7 +404,7 @@ describe('Database Tests', () => {
         controllers.updateStars('test@test.com', 100), 
       ])
       .then(()=> {
-        return controllers.getAchievements('test@test.com')
+        return controllers.getAchievements('test@test.com');
       })
       .then(response => {
         expect(response).to.include('Intergalactic Intelligence (100 stars recieved)', 'Marathon Master (100 hours learned)', 'Oracle (100 hours taught)', 'Photographic Memory (500 cards reviewed)');

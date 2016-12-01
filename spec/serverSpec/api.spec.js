@@ -144,7 +144,7 @@ describe('API tests', function() {
       uri: 'http://127.0.0.1:8000/api/cards',
       method: 'POST',
       json: {
-        word: 'Hola',
+        phrase: 'Hola',
         translation: 'Hello',
       }
     };

@@ -9,6 +9,7 @@ const findAllLanguages = require('./findAllLanguages.js');
 const addCard = require('./addCard.js');
 const updateCard = require('./updateCard.js');
 const getCards = require('./getCards.js');
+const deleteCard = require('./deleteCard.js');
 const updateStars = require('./updateStars.js');
 const updateCredits = require('./updateCredits.js');
 const addFriend = require('./addFriend.js');
@@ -30,6 +31,7 @@ module.exports = {
   addCard: addCard,
   updateCard: updateCard,
   getCards: getCards,
+  deleteCard: deleteCard,
   updateStars: updateStars,
   updateCredits: updateCredits,
   addFriend: addFriend,
