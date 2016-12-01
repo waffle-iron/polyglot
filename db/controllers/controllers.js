@@ -13,6 +13,10 @@ const updateStars = require('./updateStars.js');
 const updateCredits = require('./updateCredits.js');
 const addFriend = require('./addFriend.js');
 const getFriends = require('./getFriends.js');
+const updateCardsReviewed = require('./updateCardsReviewed.js');
+const updateHoursTaught = require('./updateHoursTaught.js');
+const updateHoursLearned = require('./updateHoursLearned.js');
+const getAchievements = require('./getAchievements.js');
 
 module.exports = {
   addUser: addUser,
@@ -29,5 +33,9 @@ module.exports = {
   updateStars: updateStars,
   updateCredits: updateCredits,
   addFriend: addFriend,
-  getFriends: getFriends
+  getFriends: getFriends,
+  updateCardsReviewed: updateCardsReviewed,
+  updateHoursTaught: updateHoursTaught,
+  updateHoursLearned: updateHoursLearned,
+  getAchievements: getAchievements
 };

@@ -9,6 +9,9 @@ exports.up = function(knex, Promise) {
       table.string('photo_url');
       table.integer('credits').defaultTo(0);
       table.integer('stars').defaultTo(0);
+      table.integer('hours_learned').defaultTo(0);
+      table.integer('hours_taught').defaultTo(0);
+      table.integer('cards_reviewed').defaultTo(0);
     }),
     knex.schema.createTableIfNotExists('friends', table => {
       table.increments();
