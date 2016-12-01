@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import axios from 'axios';
 
 class CardAdd extends Component {
   constructor(props) {
@@ -19,9 +20,16 @@ class CardAdd extends Component {
         translation: ''
       });
     } else {
-      //send post
-      //.then
-        //clear form 
+      axios.post('/api/cards', {
+        phrase: this.state.phrase,
+        translation: this.state.translation
+      })
+        .then((resp) => {
+          this.setState( {
+            phrase: '',
+            translation: ''
+          } );
+        });
     }
   }
   render() {
