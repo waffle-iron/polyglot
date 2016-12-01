@@ -27,17 +27,16 @@ class Cards extends Component {
     this.state = {
       open: false,
       cards: [
-        {id: 0, phrase: 'You have no cards!', translation: 'Click the "+" below to add a card!'}
+        {id: 'none', phrase: 'You have no cards!', translation: 'Click the "+" below to add a card!'}
       ],
       currentCard: 0
     };
     axios.get('/api/cards')
       .then((resp) => {
-        console.log(resp);
         if(resp.data.length > 0){
           this.setState( {cards: resp.data} );
         } else {
-          this.setState({cards: [{id: 0, phrase: 'You have no cards!', translation: 'Click the "+" below to add a card!'}] });
+          this.setState({cards: [{id: 'none', phrase: 'You have no cards!', translation: 'Click the "+" below to add a card!'}] });
         }
       });
   }
@@ -63,12 +62,19 @@ class Cards extends Component {
   }
 
   handleDelete(cardId) {
+    if(cardId === 'none'){
+      return;
+    }
+
     axios.post('/api/cards/delete', {
       cardId: cardId,
     })
       .then((resp) => {
-        console.log(resp);
-        this.setState( {cards: resp.data} );
+        if(resp.data.length > 0){
+          this.setState( {cards: resp.data} );
+        } else {
+          this.setState({cards: [{id: 'none', phrase: 'You have no cards!', translation: 'Click the "+" below to add a card!'}] });
+        }
         this.handleClose();
       });
   }
@@ -79,7 +85,6 @@ class Cards extends Component {
       translation: translation
     })
       .then((resp) => {
-        console.log(resp);
         this.setState( {cards: resp.data} );
         this.handleClose();
       });
