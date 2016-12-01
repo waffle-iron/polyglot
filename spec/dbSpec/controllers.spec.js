@@ -29,7 +29,7 @@ describe('Database Tests', () => {
   describe('controllers', () => {
 
     it('should add one user', done => {
-      controllers.addUser('Omar', 'omar@test.com', 'thisisafacebookid')
+      controllers.addUser('Omar', 'omar@test.com', 'thisisafacebookid', 'http://facebookphoto')
         .then(response => {
           return db('users').select().where({id: Number(response)});
         })
@@ -38,6 +38,9 @@ describe('Database Tests', () => {
           expect(response[0].full_name).to.equal('Omar');
           expect(response[0].email).to.equal('omar@test.com');
           expect(response[0].facebook_id).to.equal('thisisafacebookid');
+          expect(response[0].photo_url).to.equal('http://facebookphoto');
+          expect(response[0].credits).to.equal(0);
+          expect(response[0].stars).to.equal(0);
           done();
         });
     });
@@ -134,8 +137,17 @@ describe('Database Tests', () => {
           return controllers.getLearningLanguages('test@test.com');
         })
         .then(languages => {
-          expect(languages).to.include('Spanish');
-          expect(languages).to.include('Mandarin');
+          expect(languages.length).to.equal(2);
+          let lang1 = languages[0];
+          let lang2 = languages[1];
+          expect(lang1.languageName).to.equal('Mandarin');
+          expect(lang1.level100).to.equal(16.6);
+          expect(lang1.levelName).to.equal('Beginner');
+          expect(lang1.nextLevel).to.equal('Elementary');          
+          expect(lang2.languageName).to.equal('Spanish');
+          expect(lang2.level100).to.equal(83.3);
+          expect(lang2.levelName).to.equal('Advanced');
+          expect(lang2.nextLevel).to.equal('Master');
           done();
         });
     });
@@ -211,7 +223,92 @@ describe('Database Tests', () => {
           expect(card.translation).to.equal('this is the updated translation');      
           done();
         });
-    });    
+    });
+
+    it('should update a user\'s star count', done => {
+      controllers.updateStars('test@test.com', 10)
+        .then(() => {
+          return db('users').select('stars').where({email: 'test@test.com'});
+        })
+        .then(response => {
+          expect(response[0].stars).to.equal(10);
+          return controllers.updateStars('test@test.com', -10)
+            .then(() => {
+              return db('users').select('stars').where({email: 'test@test.com'});
+            });
+        })
+        .then(response => {
+          expect(response[0].stars).to.equal(0);
+          done();
+        })
+        .catch(response => {
+          console.log('there was an error in updating stars', response);
+        });
+    });
+
+    it('should update a user\'s credit count', done => {
+      controllers.updateCredits('test@test.com', 10)
+        .then(() => {
+          return db('users').select('credits').where({email: 'test@test.com'});
+        })
+        .then(response => {
+          expect(response[0].credits).to.equal(10);
+          return controllers.updateCredits('test@test.com', -10)
+            .then(() => {
+              return db('users').select('credits').where({email: 'test@test.com'});
+            });
+        })
+        .then(response => {
+          expect(response[0].credits).to.equal(0);
+          done();
+        })
+        .catch(response => {
+          console.log('there was an error in updating credits', response);
+        });
+    });
+
+    it('should add a friend', done => {
+      controllers.addUser('Omar', 'omar@test.com', 'thisisafacebookid', 'http://facebookphoto')
+        .then(response => {
+          return controllers.addFriend('test@test.com', 'omar@test.com');
+        })
+        .then(response => {
+          return db('friends').select().where({'id': response[0]});
+        })
+        .then(response => {
+          expect(response.length).to.equal(1);
+          let friendship = response[0];
+          expect(friendship.user_id).to.equal(2);
+          expect(friendship.friend_id).to.equal(1);
+          done();
+        });
+    });
+
+    it('should get all a user\'s friends', done => {
+      controllers.addUser('Omar', 'omar@test.com', 'thisisafacebookid', 'http://facebookphoto')
+        .then(response => {
+          return controllers.addFriend('test@test.com', 'omar@test.com');
+        })
+        .then(response => {
+          return controllers.getFriends('test@test.com');
+        })
+        .then(response => {
+          expect(response.length).to.equal(1);
+          let friend = response[0];
+          expect(friend.friend_id).to.equal(2);
+          expect(friend.full_name).to.equal('Omar');
+          expect(friend.email).to.equal('omar@test.com');
+          expect(friend.facebook_id).to.equal('thisisafacebookid');
+          expect(friend.photo_url).to.equal('http://facebookphoto');
+          expect(friend.credits).to.equal(0);
+          expect(friend.stars).to.equal(0);
+          done();
+        })
+        .catch(err =>{
+          console.log(err);
+          done();
+        });
+    });
 
   });
 });
