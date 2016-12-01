@@ -6,6 +6,13 @@ import VideoChat from './VideoChat';
 import TextChat from './TextChat';
 import CardAdd from './CardAdd';
 import * as types from '../actionTypes.js';
+let IP;
+
+if (process.env.NODE_ENV === 'development') {
+  IP = 'localhost';
+} else {
+  IP = '138.68.0.65';
+}
 
 export class Chat extends Component {
   constructor(props) {
@@ -17,7 +24,7 @@ export class Chat extends Component {
     this.webrtc = new SimpleWebRTC({
       // TODO: dynamically configure the url
       // for dev and production environments
-      url: 'http://localhost:8888',
+      url: `http://${IP}:8888`,
       localVideoEl: 'videoChat',
       remoteVideosEl: 'inbound-video',
       autoRequestMedia: true,
