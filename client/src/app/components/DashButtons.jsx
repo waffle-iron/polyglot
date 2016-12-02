@@ -1,59 +1,22 @@
 import React, { Component } from 'react';
 import * as types from '../actionTypes.js';
 import { connect } from 'react-redux';
+import Divider from 'material-ui/Divider';
 import {Menu, MenuItem} from 'material-ui/Menu';
 import Popover from 'material-ui/Popover';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 
 const style = {
-  textAlign: 'center',
-  margin: '50px',
+  container: {
+    display: 'flex', 
+    justifyContent: 'center',
+  },
+  menuItem: {
+    fontSize: '180%', 
+  }
 };
 
-export class DashButtons extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
-  }
-
-  render() {
-    return (
-      <div style={style}>
-        <RaisedButton
-          label="Teach"
-          primary
-          style={style}
-          onTouchTap={ this.props.handleTeach.bind(this) }
-        />
-        <br />
-        <RaisedButton
-          label="Learn"
-          primary
-          style={style}
-          onTouchTap={ this.props.handleLearn.bind(this) }
-        />
-        <br />
-        <RaisedButton
-          label="Review Vocab"
-          primary
-          style={style}
-          onTouchTap={ this.props.handleCards.bind(this) }
-        />
-        <RaisedButton
-          label="Achievements"
-          primary
-          style={style}
-          onTouchTap={ () => {
-            browserHistory.push('achievements');
-          }}
-        />
-       </div>
-    );
-  }
-}
 
 const mapStateToProps = ( store ) => {
   return {
@@ -84,5 +47,31 @@ const mapDispatchToProps = ( dispatch ) => {
   };
 };
 /* eslint-enable */
+export class DashButtons extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+  }
+
+  render() {
+    return (
+      <div style={style.container}>
+        <Menu desktop={true}>      
+          <MenuItem 
+          style={style.menuItem} 
+          primaryText="Teach"
+          onTouchTap={ this.props.handleTeach.bind(this) } />      
+          <Divider />
+          <MenuItem 
+          style={style.menuItem} 
+          primaryText="Learn" 
+          onTouchTap={ this.props.handleTeach.bind(this) } />
+        </Menu>                
+      </div>
+    );
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashButtons);

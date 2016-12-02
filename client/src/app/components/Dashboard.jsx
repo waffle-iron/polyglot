@@ -20,15 +20,45 @@ import axios from 'axios';
 
 let userId;
 
+const mapStateToProps = ( store ) => {
+  return {
+    view: store.view
+  };
+};
+
+const mapDispatchToProps = ( dispatch, ownProps ) => {
+  return {
+    sendId: ( newId ) => {
+      let action = { type: types.GET_ID, myId: newId };
+      dispatch(action);
+    }
+  };
+};
+
 const style = {
   container: {
     textAlign: 'center'
   },
   navContainer: {
     textAlign: 'center',
+  },
+  logoContainer: {
+    textAlign: 'center',
+    paddingTop: 30,
+    paddingLeft: 30,
   }, 
   credits: {
     margin: '0px 0px 0px 20px',
+  },
+  logo: {    
+    backgroundImage: "url('../src/public/img/lango.png')",
+    backgroundSize: '250px 250px',
+    backgroundRepeat: 'no-repeat',
+    height: 250,
+    width: 250,
+    textAlign: 'center',
+    display: 'inline-block',
+    opacity: '.8'
   }
 };
 
@@ -41,6 +71,13 @@ export class Dashboard extends Component {
       .then((resp) => {
         this.props.sendId( resp.data );
       });
+  }
+
+  handleGetUser(){
+    axios.get('/api/users')
+    .then(user => {
+      console.log('got it', user);
+    });
   }
 
   render() {
@@ -65,8 +102,11 @@ export class Dashboard extends Component {
         <div style={style.navContainer}>
           <NavBar />        
         </div>
-        <div style={style.credits}>
-          <Credits/>
+        <div style={style.credits} onClick={this.handleGetUser.bind(this)} >
+          <Credits />
+        </div>
+        <div style={style.logoContainer}>
+          <div style={style.logo}></div>
         </div>
         <div style={style.container}>
           { comp }
@@ -76,19 +116,5 @@ export class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = ( store ) => {
-  return {
-    view: store.view
-  };
-};
-
-const mapDispatchToProps = ( dispatch, ownProps ) => {
-  return {
-    sendId: ( newId ) => {
-      let action = { type: types.GET_ID, myId: newId };
-      dispatch(action);
-    }
-  };
-};
 
 export default connect( mapStateToProps, mapDispatchToProps )(Dashboard);

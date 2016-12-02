@@ -1,6 +1,10 @@
 body{
   background-color: #ECEFF1;
 }
+video{
+  height: inherit;
+  width: inherit;
+}
 .dashBoardButtons {
   text-align: center;
 }
