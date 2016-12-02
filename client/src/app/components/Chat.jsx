@@ -12,7 +12,7 @@ let IP;
 if (process.env.NODE_ENV === 'development') {
   IP = 'localhost';
 } else {
-  IP = '138.68.0.65';
+  IP = 'https://lango-1698536321.us-west-2.elb.amazonaws.com/';
 }
 
 export class Chat extends Component {
@@ -25,7 +25,7 @@ export class Chat extends Component {
     this.webrtc = new SimpleWebRTC({
       // TODO: dynamically configure the url
       // for dev and production environments
-      url: `http://${IP}:8888`,
+      // url: `${IP}:8888`,
       localVideoEl: 'videoChat',
       remoteVideosEl: 'inbound-video',
       autoRequestMedia: true,
