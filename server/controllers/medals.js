@@ -3,12 +3,18 @@ const router = express.Router();
 const db = require('../../db/controllers/controllers.js');
 
 router.get('/', (req, res) => {
+  var email = req.user.email;
   if ( !req.session.passport ) {
     res.sendStatus(401);
   } else {
-    // add in db logic
-    console.log('user-----------------', req.user);
-    res.sendStatus(200);
+    db.getAchievements(email)
+    .then(function(medals) {
+      console.log(medals);
+      res.send(medals);
+    })
+    .catch(err => {
+      res.sendStatus(404);
+    });
   }
 });
 
