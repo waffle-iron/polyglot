@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
     res.sendStatus(401);
   } else {
     // add in db logic
+    console.log('user-----------------', req.user);
     res.sendStatus(200);
   }
 });
