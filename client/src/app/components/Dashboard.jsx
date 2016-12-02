@@ -20,21 +20,6 @@ import axios from 'axios';
 
 let userId;
 
-const mapStateToProps = ( store ) => {
-  return {
-    view: store.view
-  };
-};
-
-const mapDispatchToProps = ( dispatch, ownProps ) => {
-  return {
-    sendId: ( newId ) => {
-      let action = { type: types.GET_ID, myId: newId };
-      dispatch(action);
-    }
-  };
-};
-
 const style = {
   container: {
     textAlign: 'center',
@@ -71,7 +56,7 @@ export class Dashboard extends Component {
 
     axios.get('/api/users')
       .then((resp) => {
-        this.props.sendId( resp.data );
+        this.props.sendId( resp.data.id );
       });
   }
 
@@ -107,9 +92,6 @@ export class Dashboard extends Component {
         <div style={style.credits} onClick={this.handleGetUser.bind(this)} >
           <Credits />
         </div>
-        <div style={style.logoContainer}>
-          <div style={style.logo}></div>
-        </div>
         <div style={style.container}>
           { comp }
         </div>
@@ -118,5 +100,19 @@ export class Dashboard extends Component {
   }
 }
 
+const mapStateToProps = ( store ) => {
+  return {
+    view: store.view
+  };
+};
+
+const mapDispatchToProps = ( dispatch, ownProps ) => {
+  return {
+    sendId: ( newId ) => {
+      let action = { type: types.GET_ID, myId: newId };
+      dispatch(action);
+    }
+  };
+};
 
 export default connect( mapStateToProps, mapDispatchToProps )(Dashboard);

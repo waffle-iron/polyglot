@@ -132,7 +132,7 @@ describe('API tests', function() {
     });
   });
 
-  it('Should GET all medals from /api/medals', function(done) {
+  xit('Should GET all medals from /api/medals', function(done) {
     request('http://127.0.0.1:8000/api/medals', function(err, response, body) {
       expect(response.statusCode).to.equal(401);
       done();

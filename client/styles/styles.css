@@ -38,12 +38,12 @@ video{
 }
 
 .outbound-video {
-  /*position: absolute;*/
-/*  height: 75px;
+  position: absolute;
+  height: 75px;
   width: 100px;
   z-index: 2;
-  top: 500px;
-  left: 25px;*/
+  top: 515px;
+  left: inherit;
 }
 
 .inbound-container {
