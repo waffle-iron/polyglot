@@ -37,7 +37,9 @@ const mapDispatchToProps = ( dispatch, ownProps ) => {
 
 const style = {
   container: {
-    textAlign: 'center'
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center'
   },
   navContainer: {
     textAlign: 'center',
