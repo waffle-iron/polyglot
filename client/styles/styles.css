@@ -22,6 +22,9 @@ video{
   background: url('../src/public/img/mountains.jpeg') no-repeat center center fixed;
   background-size: cover;
 }
+.chat-container {
+  display: flex;
+}
 
 .center {
   text-align: center;
@@ -35,18 +38,18 @@ video{
 }
 
 .outbound-video {
-  position: absolute;
-  height: 75px;
+  /*position: absolute;*/
+/*  height: 75px;
   width: 100px;
   z-index: 2;
   top: 500px;
-  left: 25px;
+  left: 25px;*/
 }
 
 .inbound-container {
-  position: absolute;
+/*  position: absolute;
   height: inherit;
-  width: inherit;
+  width: inherit;*/
 }
 
 video {

@@ -78,12 +78,14 @@ export class Chat extends Component {
         <Paper className='paper vc-paper'>
           <VideoChat leave={ this.leave }/>
         </Paper>
-        <Paper className='paper card-paper'>
-          <CardAdd/>
-        </Paper>
-        <Paper className='paper text-paper'>
-          <TextChat/>
-        </Paper>
+        <div>
+          <Paper className='paper card-paper'>
+            <CardAdd/>
+          </Paper>
+          <Paper className='paper text-paper'>
+            <TextChat/>
+          </Paper>
+        </div>
       </div>
     );
   }
