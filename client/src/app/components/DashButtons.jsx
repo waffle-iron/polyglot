@@ -24,6 +24,35 @@ const mapStateToProps = ( store ) => {
   };
 };
 
+
+/* eslint-enable */
+export class DashButtons extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+  }
+
+  render() {
+    return (
+      <div style={style.container}>
+        <Menu desktop={true}>      
+          <MenuItem 
+          style={style.menuItem} 
+          primaryText="Teach"
+          onTouchTap={ this.props.handleTeach } />      
+          <Divider />
+          <MenuItem 
+          style={style.menuItem} 
+          primaryText="Learn" 
+          onTouchTap={ this.props.handleLearn } />
+        </Menu>                
+      </div>
+    );
+  }
+}
+
 /* eslint-disable */
 const mapDispatchToProps = ( dispatch ) => {
   return {
@@ -46,32 +75,5 @@ const mapDispatchToProps = ( dispatch ) => {
     }
   };
 };
-/* eslint-enable */
-export class DashButtons extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
-  }
-
-  render() {
-    return (
-      <div style={style.container}>
-        <Menu desktop={true}>      
-          <MenuItem 
-          style={style.menuItem} 
-          primaryText="Teach"
-          onTouchTap={ this.props.handleTeach.bind(this) } />      
-          <Divider />
-          <MenuItem 
-          style={style.menuItem} 
-          primaryText="Learn" 
-          onTouchTap={ this.props.handleTeach.bind(this) } />
-        </Menu>                
-      </div>
-    );
-  }
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashButtons);

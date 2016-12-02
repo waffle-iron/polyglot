@@ -31,10 +31,12 @@ export class LaunchPad extends Component {
   }
  
   render() {
-    let greeting = 'Select language to teach';
-    if ( !this.props.teacher ) {
+    let greeting;
+    if ( this.props.teacher ) {
+      greeting = 'Select language to teach';
+    } else if ( !this.props.teacher ) {
       greeting = 'Select language to learn';
-    }
+    } 
     return (
       <div>
       <h1>{ greeting }</h1>
